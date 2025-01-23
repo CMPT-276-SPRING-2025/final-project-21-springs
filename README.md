@@ -3,7 +3,7 @@
 Project Title:
 
 
-Group Members:
+Group Members:<br>
 Armarn Moe<br>
 Smit Sanghvi<br>
 Rheana Lopez<br>
