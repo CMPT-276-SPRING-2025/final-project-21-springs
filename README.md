@@ -4,7 +4,7 @@ Project Title:<br>
 To-Duel
 
 Group Members:<br>
-Armarn Moe<br>
+Aung Zaw Moe<br>
 Smit Sanghvi<br>
 Rheana Lopez<br>
 Steven Zhang
