@@ -4,9 +4,9 @@ Project Title:
 
 
 Group Members:
-Armarn Moe
-Smit Sanghvi
-Rheana Lopez
+Armarn Moe<br>
+Smit Sanghvi<br>
+Rheana Lopez<br>
 Steven Zhang
 
 Description:
