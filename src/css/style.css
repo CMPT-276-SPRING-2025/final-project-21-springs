@@ -60,6 +60,7 @@ footer {
     height:500px;
     background-color: white;
     padding:4em 9em;
+    margin:auto;
 }
 
 .content h1 {
@@ -84,7 +85,11 @@ footer {
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
-    margin: 4px 2px;
     cursor: pointer;
+    width:125px;
+}
+
+.content .button.center-button {
+    margin: 0 auto;
+    display: block;
 }
