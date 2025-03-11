@@ -57,6 +57,34 @@ footer {
 }
 
 .content {
-    height:650px;
+    height:500px;
     background-color: white;
+    padding:4em 9em;
+}
+
+.content h1 {
+    font-family:"Inter", sans-serif;
+    margin-bottom:40px;
+}
+
+.content h2 {
+    font-family:"Inter", sans-serif;
+    color:#A1CBCF;
+}
+
+.content p {
+    font-family:"Inter", sans-serif;
+}
+
+.content .button {
+    background-color:#A1CBCF;
+    border-radius: 15px;
+    font-family:"Inter",sans-serif;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
 }
