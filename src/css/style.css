@@ -112,7 +112,6 @@ footer {
     padding-right:10px;
 }
 
-
 .content #auth button {
     background-color:white;
     border-radius: 15px;
@@ -126,4 +125,34 @@ footer {
     text-decoration: none;
     cursor: pointer;
     width:125px;
+}
+
+.content #create-list-header {
+    border-bottom:2px solid #A1CBCF;
+    padding-bottom:20px;
+    margin-bottom:45px;
+}
+
+.content #create-list-header .button{
+    float:right;
+}
+
+.content #create-list-header #list-name {
+    font-size:40px;
+    width:80%;
+    outline:none;
+    border:none;
+}
+
+.content #list-description {
+    width:100%;
+    outline:none;
+    border:none;
+    font-size:16px;
+}
+
+.content #list-deadline {
+    outline:none;
+    border:none;
+    font-size:16px;
 }
