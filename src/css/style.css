@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;1,14..32,300&display=swap');
+
+
+.inter-font {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+}
+
+nav {
+    background-color: #CE7171;
+    width: 100%;
+    display:flex;
+    flex-direction:row;
+}
+
+nav .logo {
+    margin-right:auto;
+    padding:3em 4em;
+}
+
+nav .logo a {
+    font-family: "Inter", sans-serif;
+    font-size: 2rem;
+    text-decoration: none;
+    color: white;
+}
+
+nav ul {    
+    list-style: none;
+    padding:2em 3em;
+    display:flex;
+    flex: row;
+    gap:2em;
+}
+
+nav li {
+    width:auto;
+    padding-top:1em;
+}
+
+nav li a {
+    text-decoration:none;
+    color:white;
+    font-family:"Inter", sans-serif;
+}
+
+footer {
+    background-color:#CE7171;
+    width: 100%;
+    height:3em;
+    position:absolute;
+}
+
+.content {
+    position:relative;
+    height:500px;
+    background-color: white;
+    padding:0em 4em;
+    margin:auto;
+}
+
+.content h1 {
+    font-family:"Inter", sans-serif;
+    margin-bottom:40px;
+}
+
+.content h2 {
+    font-family:"Inter", sans-serif;
+    color:#A1CBCF;
+}
+
+.content p {
+    font-family:"Inter", sans-serif;
+}
+
+.content .button {
+    background-color:#A1CBCF;
+    border-radius: 15px;
+    font-family:"Inter",sans-serif;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    width:125px;
+}
+
+.content .button.center-button {
+    margin: 0 auto;
+    display: block;
+}
+
+.content #auth {
+    border-style:solid;
+    border-color:#A1CBCF;
+    width:25%;
+    border-radius:15px;
+    padding:45px;
+    margin:0 auto;
+    display:block;
+    text-align: center;
+}
+
+.content #auth label {
+    font-family:"Inter",sans-serif;
+    width:180px;
+    text-align:right;
+    padding-right:10px;
+}
+
+.content #auth button {
+    background-color:white;
+    border-radius: 15px;
+    border-style:solid 2px;
+    border-color:grey;
+    font-family:"Inter",sans-serif;
+    font-size:15px;
+    color: #A1CBCF;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    width:125px;
+}
+
+.content #create-list-header {
+    border-bottom:2px solid #A1CBCF;
+    padding-bottom:20px;
+    margin-bottom:45px;
+}
+
+.content #create-list-header .button{
+    float:right;
+}
+
+.content #create-list-header #list-name {
+    font-size:40px;
+    width:80%;
+    outline:none;
+    border:none;
+}
+
+.content #list-description {
+    width:100%;
+    outline:none;
+    border:none;
+    font-size:16px;
+}
+
+.content #list-deadline {
+    outline:none;
+    border:none;
+    font-size:16px;
+}
