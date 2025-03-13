@@ -1,11 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;1,14..32,300&display=swap');
 
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-}
 
 .inter-font {
     font-family: "Inter", sans-serif;
