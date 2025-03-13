@@ -57,9 +57,10 @@ footer {
 }
 
 .content {
+    position:relative;
     height:500px;
     background-color: white;
-    padding:4em 9em;
+    padding:0em 4em;
     margin:auto;
 }
 
