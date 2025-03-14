@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Duel</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="nav">
+        <nav>
+            <div class="logo"><a href="/final-project-21-springs/">To Duel</a></div>
+            <ul class="menu">
+                <li><a href="/final-project-21-springs/">Home</a></li>
+                <li><a href="/final-project-21-springs/about.html">About</a></li>
+                <li><a href="/final-project-21-springs/sign-up-sign-in.html">Sign Up/Sign In</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="content">
+        <!-- This is where the page's content goes-->
+         
+        <!--List Description-->
+        <div class="list-header">
+            <h1>Title</h1>
+            <p>List Description: </p>
+            <p>Deadline: </p>
+            <p>Members: </p>
+        </div>
+        
+        <!--Content after header-->
+        <div class="list-subcontent">
+            
+            <!--Task List-->
+            <div class="add-task">
+                <a href="javascript:void(0)">+ Add Task</a>
+                <ul class="add-task-menu">
+                    <input type="text" id="task-title" placeholder="Task title">
+                    <input type="text" id="task-desc" placeholder="Task description">
+                    <input type="datetime-local" id="task-deadline" placeholder="Deadline">
+                    <button onclick="addTask()">Add Task</button>
+                </ul>
+            </div>
+    
+            <div class="task-list">
+                <ul id="tasks"></ul>
+            </div>
+    
+            <!--Leaderboard-->
+            <div class="leaderboard">
+                <h1>LEADERBOARD</h1>
+                <ul id="leaderboard"></ul>
+            </div>
+        </div>
+        
+
+    </div>
+
+    <div id="footer">
+        <footer>
+        </footer>
+    </div>
+</body>
+</html>

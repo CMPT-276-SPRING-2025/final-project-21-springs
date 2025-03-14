@@ -67,7 +67,7 @@ footer {
 
 .content h1 {
     font-family:"Inter", sans-serif;
-    margin-bottom:40px;
+    margin-bottom:20px;
 }
 
 .content h2 {
@@ -157,4 +157,22 @@ footer {
     outline:none;
     border:none;
     font-size:16px;
+}
+
+.content .list-header {
+    border-bottom:2px solid #A1CBCF;
+    padding-bottom:20px;
+    margin-bottom:45px;
+}
+
+.content .list-subcontent {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.content .leaderboard {
+    background-color: #FFF7BD;
+    padding:15px 30px;
+    height:300px;
 }
