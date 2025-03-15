@@ -21,7 +21,7 @@ signInBtn.addEventListener("click", () => {
     const password = document.querySelector(".userPassword").value;
     auth.signInWithEmailAndPassword(email, password)
         .then(()=>{
-            window.location.href = "create-List.html"; // The page is not yet implemented
+            window.location.href = "create-List.html";
         })
         .catch(error => alert(error.message));
     
