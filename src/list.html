@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Duel</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="nav">
+        <nav>
+            <div class="logo"><a href="/final-project-21-springs/">To Duel</a></div>
+            <ul class="menu">
+                <li><a href="/final-project-21-springs/">Home</a></li>
+                <li><a href="/final-project-21-springs/about.html">About</a></li>
+                <li><a href="/final-project-21-springs/sign-up-sign-in.html">Sign Up/Sign In</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="content">
+        <div class="list-header">
+            <h1 class="title">Title</h1>
+            <p class="list-description">List Description: </p>
+            <b><p class="deadline">Deadline: </p></b>
+            <p class="members">Members: </p>
+            <b><p class="joinCodePara">Join Code: </p></b>
+        </div>
+        
+        <div class="list-subcontent">
+            
+            <div class="add-task">
+                <ul class="add-task-menu">
+                    <input type="text" class="task-title" placeholder="Task title">
+                    <input type="text" class="task-desc" placeholder="Task description">
+                    <input type="datetime-local" class="task-deadline" placeholder="Deadline">
+                    <button class="addTaskBtn">Add Task</button>
+                </ul>
+                <table class="taskTable">
+
+                </table>
+            </div>
+    
+            <div class="leaderboard">
+                <h1>LEADERBOARD</h1>
+                <ul id="leaderboard"></ul>
+            </div>
+        </div>
+        
+
+    </div>
+
+    <div id="footer">
+        <footer>
+        </footer>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="JS/mainList.js"></script>
+</body>
+</html>
