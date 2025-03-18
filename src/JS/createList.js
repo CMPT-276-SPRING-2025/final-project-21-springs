@@ -73,3 +73,50 @@ createListBtn.addEventListener("click", () => {
     });
 });
 
+joinListBtn.addEventListener("click", () => {
+    let joinCodeEnterBox = document.querySelector(".joinCodeEnterBox");
+    joinCodeEnterBox.style.display = "flex";
+
+    const joinCodeInput = document.getElementById("theJoinCode");
+    const joinListHandler = () => {
+        let code = joinCodeInput.value.trim().toUpperCase();
+        if (!code) {
+            alert("Please enter a join code.");
+            return;
+        }
+        db.collection("lists").where("joinCode", "==", code).get()
+            .then(querySnapshot => {
+                if (querySnapshot.empty) {
+                    alert("No list found with that code.");
+                    return;
+                }
+                querySnapshot.forEach(doc => {
+                    db.collection("lists").doc(doc.id).update({
+                        members: firebase.firestore.FieldValue.arrayUnion(theName)
+                    })
+                    .then(() => {
+                        // console.log("Successfully joined the list!");
+                        // Optionally, redirect the user or update the UI
+                        window.localStorage.setItem("joinCode",code);
+                        setTimeout(() => {
+                            window.location.href = "list.html";
+                        }, 500);
+                    })
+                    .catch(error => {
+                        console.error("Error joining the list:", error);
+                        alert("Error joining list: " + error.message);
+                    });
+                });
+            })
+            .catch(error => {
+                console.error("Error querying list:", error);
+                alert("Error finding list: " + error.message);
+            });
+    };
+
+    // Ensure the event listener is added only once
+    if (!joinCodeInput.dataset.listenerAdded) {
+        joinCodeInput.addEventListener("change", joinListHandler);
+        joinCodeInput.dataset.listenerAdded = true;
+    }
+});
