@@ -19,25 +19,35 @@
     </div>
 
     <div class="content">
-        <!-- This is where the page's content goes-->
-        <div id="create-list-header">
-            <input type="text" id="list-name" placeholder="Name your To Do List.">
-            <!--Update button link-->
-            <button class="createListBtn button">Create List</button>
-            <button class="joinListBtn">Join List</button>
-            <div class="joinCodeEnterBox">
-                <p>Enter the Join code</p>
-                <input type="text" name="joinCode" id="theJoinCode" placeholder="Join Code">
+        <div class="list-header">
+            <h1 class="title">Title</h1>
+            <p class="list-description">List Description: </p>
+            <b><p class="deadline">Deadline: </p></b>
+            <p class="members">Members: </p>
+            <b><p class="joinCodePara">Join Code: </p></b>
+        </div>
+        
+        <div class="list-subcontent">
+            
+            <div class="add-task">
+                <ul class="add-task-menu">
+                    <input type="text" class="task-title" placeholder="Task title">
+                    <input type="text" class="task-desc" placeholder="Task description">
+                    <input type="datetime-local" class="task-deadline" placeholder="Deadline">
+                    <button class="addTaskBtn">Add Task</button>
+                </ul>
+                <table class="taskTable">
+
+                </table>
+            </div>
+    
+            <div class="leaderboard">
+                <h1>LEADERBOARD</h1>
+                <ul id="leaderboard"></ul>
             </div>
         </div>
+        
 
-        <h2>What's your to do list about?</h2>
-        <input type="text" id="list-description" placeholder="Enter to do list description.">
-        <br><br>
-
-        <h2>When's your deadline?</h2>
-        <input type="date" id="list-deadline">
-        <br>
     </div>
 
     <div id="footer">
@@ -47,6 +57,6 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <script src="JS/createList.js"></script>
+    <script src="JS/mainList.js"></script>
 </body>
 </html>
