@@ -4,10 +4,6 @@ Project Title:<br>
 To-Duel
 
 Group Members:<br>
-Aung Zaw Moe<br>
-Smit Sanghvi<br>
-Rheana Lopez<br>
-Steven Zhang
 
 Description:<br>
 This website is intended for classmates and will be a to-do list where you can add friends and compete to see who is the most productive. Completeting tasks on time will earn you points and failing to complete a task by the deadline will result in points being deducted. It is important that users competing against each other are working on the same tasks (for example assignments from the same class).
