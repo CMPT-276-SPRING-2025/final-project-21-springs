@@ -102,6 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
         markCompleteBtn.addEventListener("click", () => removeTask(title));
     }
 
+    //added the remove task function 
     function removeTask(title) {
         if (!listDocId) {
             console.error("List document ID is missing.");
@@ -110,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
         db.collection("lists").doc(listDocId).get()
             .then(doc => {
-                if (doc.exists) { // <-- Fixed here (removed parentheses)
+                if (doc.exists) { //fixed issue by AI 
                     let tasks = doc.data().taskList;
                     let updatedTasks = tasks.filter(task => task.title !== title);
     
