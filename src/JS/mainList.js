@@ -62,24 +62,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let taskTable = document.querySelector(".taskTable");
 
-    function loadTasks(docId) {
+    function loadTasks(docId){
         db.collection("lists").doc(docId).get()
-            .then(doc => {
-                if (doc.exists) {
-                    let tasks = doc.data().taskList;
-                    if (tasks && Array.isArray(tasks)) {
-                        taskTable.innerHTML = "";
-                        tasks.forEach(task => {
-                            addTaskRowToUI(task.title, task.description, task.dueDate);
-                        });
-                    }
-                }
-            })
-            .catch(error => {
-                console.error("Error loading tasks:", error);
-            });
-    }
+        .then(doc => {
+            if (doc.exists) {
+                let tasks = doc.data().taskList;
+                if(tasks && Array.isArray(tasks)) {
+                    taskTable.innerHTML = "";
+                    tasks.forEach(task => {
+                        addTaskRowToUI(task.title, task.description, task.dueDate);
+                    });
 
+                }
+            }
+        })
+    }
+    
     function addTaskRowToUI(title, description, dueDate) {
         let tRow = document.createElement("tr");
         let tColTitleAndOtherInfo = document.createElement("td");
@@ -99,6 +97,39 @@ document.addEventListener("DOMContentLoaded", () => {
         tColTitleAndOtherInfo.append(paraTitle, otherInfoWrapper);
         tRow.append(tColTitleAndOtherInfo);
         taskTable.append(tRow);
+
+        //calling function for markComplete
+        markCompleteBtn.addEventListener("click", () => removeTask(title));
+    }
+
+    //added the remove task function 
+    function removeTask(title) {
+        if (!listDocId) {
+            console.error("List document ID is missing.");
+            return;
+        }
+    
+        db.collection("lists").doc(listDocId).get()
+            .then(doc => {
+                if (doc.exists) { //fixed issue by AI 
+                    let tasks = doc.data().taskList;
+                    let updatedTasks = tasks.filter(task => task.title !== title);
+    
+                    return db.collection("lists").doc(listDocId).update({
+                        taskList: updatedTasks
+                    });
+                } else {
+                    throw new Error("Document does not exist!");
+                }
+            })
+            .then(() => {
+                console.log(`Task "${title}" removed successfully.`);
+                loadTasks(listDocId);
+            })
+            .catch(error => {
+                console.error("Error removing task:", error);
+                alert("Failed to remove task: " + error.message);
+            });
     }
 
     let addTaskBtn = document.querySelector(".addTaskBtn");
@@ -145,3 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+
+
+//mark complete task function
+
