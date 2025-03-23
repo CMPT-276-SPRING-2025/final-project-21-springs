@@ -258,3 +258,43 @@ tr{
 .content .sublist p {
     color: grey;
 }
+
+
+/* ----------- SAMPLE LIST PAGE ----------- */
+.content #todo-list {
+    font-family: "Inter",sans-serif;
+}
+
+.content #todo-list .todo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 25px;
+}
+
+/* Start ChatGPT code - rheanafrancesca */
+.content #todo-list .todo input[type="checkbox"] {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    appearance: none;
+    border: 1px solid #bbb;
+    border-radius: 15px;
+    position:relative;
+}
+
+.content #todo-list .todo input[type="checkbox"]:checked {
+    background-color: #4caf50; /* Green background when checked */
+}
+
+.content #todo-list .todo input[type="checkbox"]:checked::before {
+    content: '\2713'; /* Unicode for a checkmark */
+    color: white;
+    font-size: 25px; /* Adjust the size of the checkmark */
+    position: absolute;
+    top: 1px; /* Adjust the vertical position */
+    left: 3px; /* Adjust the horizontal position */
+    line-height: 1;
+}
+
+/* End ChatGPT code - rheanafrancesca */

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Duel</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="nav">
+        <nav>
+            <div class="logo"><a href="/final-project-21-springs/">To Duel</a></div>
+            <ul class="menu">
+                <li><a href="/final-project-21-springs/">Home</a></li>
+                <li><a href="/final-project-21-springs/about.html">About</a></li>
+                <li><a href="/final-project-21-springs/sign-up-sign-in.html">Sign Up/Sign In</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="content">
+        <div class="list-header">
+            <h1 class="title">Sample List 1</h1>
+            <p class="list-description"><b>List Description: </b>This is a sample list.</p>
+            <p><b>Deadline: </b><span id="date-id1"></span></p>
+            <p><b>Members: </b><span id="users-id1"></span></p>
+        </div>
+        
+        <div class="list-subcontent">
+            
+            <!--Container to display list-->
+            <div id="todo-list"></div>
+    
+            <div class="leaderboard">
+                <h1>LEADERBOARD</h1>
+                <ul id="leaderboard"></ul>
+            </div>
+        </div>
+
+        
+    </div>
+
+    <div id="footer">
+        <footer>
+        </footer>
+    </div>
+
+    <script src="JS/load-list.js"></script>
+    <script src="JS/sample-list.js"></script>
+    <script>
+        displayFixedDate('2025-04-08', "date-id1");
+        fetchUsers(0,3,"users-id1");
+
+        const userIds = [1, 2, 3];
+        userIds.forEach(userId => {
+            getSingleUsersTodos(userId);
+        });
+    </script>
+</body>
+</html>
