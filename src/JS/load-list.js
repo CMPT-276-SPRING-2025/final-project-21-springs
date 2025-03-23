@@ -1,4 +1,4 @@
-///////////////////// Edited ChatGPT generated code - rheanafrancesca /////////////////////
+///////////////////// ChatGPT generated/assisted code - rheanafrancesca /////////////////////
 
 // Function to fetch user data from the DummyJSON API through user ID
 function fetchUsers(start,end,listId) {
@@ -31,6 +31,12 @@ function displayFixedDate(inputDate, dateId) {
 }
 
 ///////////////////// End ChatGPT generated code - rheanafrancesca /////////////////////
+
+let sampleList1Btn = document.querySelector(".samplelist1");
+
+sampleList1Btn.addEventListener("click", () => {
+    window.location.href = "sample-list1.html";
+});
 
 // Dates for Lists
 displayFixedDate('2025-04-08', "date-id1");
