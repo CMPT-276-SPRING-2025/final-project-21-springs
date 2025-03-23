@@ -1,3 +1,4 @@
+/* ----------- FONTS ----------- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;1,14..32,300&display=swap');
 
 
@@ -8,10 +9,12 @@
     font-style: normal;
 }
 
+/* ----------- BODY ----------- */
 body {
     margin: 0;
 }
 
+/* ----------- NAVIGATION BAR ----------- */
 nav {
     background-color: #CE7171;
     width: 100%;
@@ -50,6 +53,7 @@ nav li a {
     font-family:"Inter", sans-serif;
 }
 
+/* ----------- FOOTER ----------- */
 footer {
     background-color:#CE7171;
     width: 100%;
@@ -57,17 +61,18 @@ footer {
     position:absolute;
 }
 
+/* ----------- CONTENT FOR EVERY PAGE ----------- */
 .content {
     position:relative;
-    height:500px;
+    min-height:550px;
     background-color: white;
-    padding:0em 4em;
+    padding:3em 4em;
     margin:auto;
 }
 
 .content h1 {
     font-family:"Inter", sans-serif;
-    margin-bottom:40px;
+    margin-bottom:20px;
 }
 
 .content h2 {
@@ -96,6 +101,15 @@ footer {
     display: block;
 }
 
+.content .button.white {
+    background-color:white;
+    color: black;
+    border-color:black 1px;
+    border-width:thin;
+    border-style:solid;
+}
+
+/* ----------- SIGN UP AND SIGN IN PAGE ----------- */
 .content #auth {
     border-style:solid;
     border-color:#A1CBCF;
@@ -129,6 +143,7 @@ footer {
     width:125px;
 }
 
+/* ----------- CREATE LIST PAGE ----------- */
 .content #create-list-header {
     border-bottom:2px solid #A1CBCF;
     padding-bottom:20px;
@@ -160,7 +175,7 @@ footer {
 }
 
 
-
+/* ----------- JOIN LIST PAGE ----------- */
 .joinCodeEnterBox{
     display: none;
     flex-direction: column;
@@ -202,7 +217,7 @@ tr{
     border: 2px solid black;
 }
 
-
+/* ----------- MAIN LIST PAGE ----------- */
 .content .list-header {
     border-bottom:2px solid #A1CBCF;
     padding-bottom:20px;
@@ -220,3 +235,66 @@ tr{
     padding:15px 30px;
     height:300px;
 }
+
+/* ----------- LOAD LIST PAGE ----------- */
+.content .sublist-container {
+    display:grid;
+    grid-template-columns: repeat(3, 33.33%);
+    grid-column-gap: 10px;
+    grid-row-gap: 25px;
+}
+
+.content .sublist {
+    padding:1em 2em;
+    background-color: #FFF7BD;
+    width:80%;
+    height:auto;
+}
+
+.content .sublist h3 {
+    font-family:"Inter",sans-serif;
+}
+
+.content .sublist p {
+    color: grey;
+}
+
+
+/* ----------- SAMPLE LIST PAGE ----------- */
+.content #todo-list {
+    font-family: "Inter",sans-serif;
+}
+
+.content #todo-list .todo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 25px;
+}
+
+/* Start ChatGPT code - rheanafrancesca */
+.content #todo-list .todo input[type="checkbox"] {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    appearance: none;
+    border: 1px solid #bbb;
+    border-radius: 15px;
+    position:relative;
+}
+
+.content #todo-list .todo input[type="checkbox"]:checked {
+    background-color: #4caf50; /* Green background when checked */
+}
+
+.content #todo-list .todo input[type="checkbox"]:checked::before {
+    content: '\2713'; /* Unicode for a checkmark */
+    color: white;
+    font-size: 25px; /* Adjust the size of the checkmark */
+    position: absolute;
+    top: 1px; /* Adjust the vertical position */
+    left: 3px; /* Adjust the horizontal position */
+    line-height: 1;
+}
+
+/* End ChatGPT code - rheanafrancesca */
