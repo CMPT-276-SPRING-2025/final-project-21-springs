@@ -11,12 +11,6 @@ function getSingleUsersTodos(userId) {
                 const todoElement = document.createElement('div');
                 todoElement.classList.add('todo');
 
-                if (todo.completed) {
-                    todoElement.classList.add('completed');
-                } else {
-                    todoElement.classList.add('not-completed');
-                }
-
                 const checkbox = document.createElement('input');
                 checkbox.type = 'checkbox';
                 checkbox.checked = todo.completed;
@@ -29,6 +23,12 @@ function getSingleUsersTodos(userId) {
                 // Append checkbox and todo text to the todoElement
                 todoElement.appendChild(checkbox);
                 todoElement.appendChild(todoText);
+
+                // Attach event listener to the checkbox
+                checkbox.addEventListener('change', function () {
+                  updateTaskCompletion(todo.id, checkbox.checked); // Update task status when checkbox changes
+                });
+
                 
                 todoListContainer.appendChild(todoElement);
             });
@@ -58,13 +58,6 @@ function addTask(taskInput, userIdInput) {
       // Create the new todo element
       const todoElement = document.createElement('div');
       todoElement.classList.add('todo');
-
-      // Add the completed or not-completed class
-      if (data.completed) {
-        todoElement.classList.add('completed');
-      } else {
-        todoElement.classList.add('not-completed');
-      }
 
       // Create the checkbox
       const checkbox = document.createElement('input');
@@ -114,5 +107,23 @@ function addTaskButton() {
 document.addEventListener('DOMContentLoaded', function () {
   addTaskButton();
 });
+
+async function updateTaskCompletion(taskId, isCompleted) {
+  const response = await fetch(`https://dummyjson.com/todos/${taskId}`, {
+      method: 'PUT',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+          completed: isCompleted
+      })
+  });
+
+  if (response.ok) {
+      console.log(`Task ${taskId} updated successfully!`);
+  } else {
+      console.error(`Failed to update task ${taskId}.`);
+  }
+}
 
 ///////////////////// End ChatGPT generated code - rheanafrancesca /////////////////////
