@@ -23,7 +23,7 @@
             <h1 class="title">Sample List 1</h1>
             <p class="list-description"><b>List Description: </b>This is a sample list.</p>
             <p><b>Deadline: </b><span id="date-id1"></span></p>
-            <p><b>Members: </b><span id="users-id1"></span></p>
+            <p><b>Users: </b><span id="users-id1"></span></p>
         </div>
         
         <div class="list-subcontent">
@@ -32,8 +32,19 @@
             <div class="todo-list-container">
                 <div id="todo-list"></div>
                 <div>
-                    <button id="add-task-btn">+</button>
-                    <input type="text" id="new-task-input" placeholder="Enter your new task" />
+                    <div id="new-task-container">
+                        <button id="open-submenu-btn">+</button>
+                        <label for="open-submenu-btn" id="task-label">Add Task</label>
+                    </div>
+                    <!-- Submenu that will open when the button is clicked -->
+                    <div id="add-task-submenu">
+                        <label for="new-task-input" id="new-task-input-label"><b>Task: </b></label>
+                        <input type="text" id="new-task-input" placeholder="Enter your new task" />
+                        <label for="userId-input" id="userId-input-label"><b>User: </b></label>
+                        <input type="text" id="userId-input" placeholder="Assign user." />
+                        <br>
+                        <button id="add-task-btn">Add</button>
+                    </div>
                 </div>
             </div>
     
@@ -61,6 +72,8 @@
         userIds.forEach(userId => {
             getSingleUsersTodos(userId);
         });
+
+        openSubmenu();
     </script>
 </body>
 </html>

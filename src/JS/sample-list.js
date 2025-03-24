@@ -84,6 +84,32 @@ function addTask(taskInput, userIdInput) {
   });
 }
 
+function openSubmenu() {
+  // Get the button and submenu
+  const button = document.getElementById('open-submenu-btn');
+  const submenu = document.getElementById('add-task-submenu');
+
+  // Add a click event listener to the button
+  button.addEventListener('click', function(event) {
+    // Prevent the event from propagating to the window click listener
+    event.stopPropagation();
+
+    // Toggle the visibility of the submenu
+    if (submenu.style.display === 'none' || submenu.style.display === '') {
+        submenu.style.display = 'block'; // Show the submenu
+    } else {
+        submenu.style.display = 'none'; // Hide the submenu
+    }
+  });
+
+  // Optional: Close the submenu if the user clicks outside of it
+  window.addEventListener('click', function(event) {
+    if (!event.target.closest('#add-task-btn') && !event.target.closest('#add-task-submenu')) {
+        submenu.style.display = 'none';
+    }
+  });
+}
+
 function addTaskButton() {
   document.getElementById('add-task-btn').addEventListener('click', function() {
     // Get the user input from the input field
