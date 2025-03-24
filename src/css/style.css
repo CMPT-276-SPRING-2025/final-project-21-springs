@@ -287,7 +287,7 @@ tr{
     background-color:white;
     padding:10px;
     margin: 0 0 20px  20px;
-    width:90%;
+    width:85%;
     font-family: "Inter", sans-serif;
     font-size:medium;
 }
@@ -312,6 +312,13 @@ tr{
     font-weight:bolder;
     color:#4caf50;
     transition-duration: 0.25s;
+}
+
+.content #users-radio, #users-container {
+    display:flex;
+    flex-direction:row;
+    align-items: center;
+    gap:25px;
 }
 
 
@@ -339,5 +346,49 @@ tr{
     left: 3px; /* Adjust the horizontal position */
     line-height: 1;
 }
+
+
+.radio-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+/* Hide the default radio button */
+input[type="radio"] {
+    display: none;
+}
+
+/* Custom style for the radio button */
+input[type="radio"] + label {
+    position: relative;
+    padding-left: 35px; /* Space for custom radio button */
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 20px;
+    display: inline-block;
+    user-select: none; /* Disable text selection */
+}
+
+/* Custom radio button appearance */
+input[type="radio"] + label::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid #007BFF; /* Blue border */
+    border-radius: 50%;
+    background-color: white;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* On radio button checked state */
+input[type="radio"]:checked + label::before {
+    background-color: #007BFF; /* Blue background */
+    border-color: #007BFF;
+}
+
 
 /* End ChatGPT code - rheanafrancesca */

@@ -40,8 +40,10 @@
                     <div id="add-task-submenu">
                         <label for="new-task-input" id="new-task-input-label"><b>Task: </b></label>
                         <input type="text" id="new-task-input" placeholder="Enter your new task" />
-                        <label for="userId-input" id="userId-input-label"><b>User: </b></label>
-                        <input type="text" id="userId-input" placeholder="Assign user." />
+                        <div id="users-radio">
+                            <p><b>User: </b></p>
+                            <div id="users-container"></div>
+                        </div>
                         <br>
                         <button id="add-task-btn">Add</button>
                     </div>
@@ -66,7 +68,7 @@
     <script src="JS/sample-list.js"></script>
     <script>
         displayFixedDate('2025-04-08', "date-id1");
-        fetchUsers(0,3,"users-id1");
+        fetchThenDisplayBasic(0,3,"users-id1");
 
         const userIds = [1, 2, 3];
         userIds.forEach(userId => {
@@ -74,6 +76,10 @@
         });
 
         openSubmenu();
+
+        fetchUsers(0, 3).then(users => {
+            displayUsersAsRadioButtons(users);
+        });
     </script>
 </body>
 </html>
