@@ -31,30 +31,3 @@ function displayFixedDate(inputDate, dateId) {
 }
 
 ///////////////////// End ChatGPT generated code - rheanafrancesca /////////////////////
-
-let sampleList1Btn = document.querySelector(".samplelist1");
-let sampleList2Btn = document.querySelector(".samplelist2");
-let sampleList3Btn = document.querySelector(".samplelist3");
-
-
-sampleList1Btn.addEventListener("click", () => {
-    window.location.href = "sample-list1.html";
-});
-
-sampleList2Btn.addEventListener("click", () => {
-    window.location.href = "sample-list2.html";
-});
-
-sampleList3Btn.addEventListener("click", () => {
-    window.location.href = "sample-list3.html";
-});
-
-// Dates for Lists
-displayFixedDate('2025-04-08', "date-id1");
-displayFixedDate('2025-06-12', "date-id2");
-displayFixedDate('2025-05-27', "date-id3");
-
-// Users for Lists
-fetchUsers(0,3,"users-id1");
-fetchUsers(12,15,"users-id2");
-fetchUsers(6,9,"users-id3");
