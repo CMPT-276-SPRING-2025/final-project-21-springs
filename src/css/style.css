@@ -68,26 +68,20 @@ footer {
     background-color: white;
     padding:3em 4em;
     margin:auto;
+    font-family:"Inter", sans-serif;
 }
 
 .content h1 {
-    font-family:"Inter", sans-serif;
     margin-bottom:20px;
 }
 
 .content h2 {
-    font-family:"Inter", sans-serif;
     color:#A1CBCF;
-}
-
-.content p {
-    font-family:"Inter", sans-serif;
 }
 
 .content .button {
     background-color:#A1CBCF;
     border-radius: 15px;
-    font-family:"Inter",sans-serif;
     color: white;
     padding: 15px 32px;
     text-align: center;
@@ -133,7 +127,6 @@ footer {
     border-radius: 15px;
     border-style:solid 2px;
     border-color:grey;
-    font-family:"Inter",sans-serif;
     font-size:15px;
     color: #A1CBCF;
     padding: 15px 32px;
@@ -196,7 +189,6 @@ footer {
     background-color:white;
     border-radius: 15px;
     border:solid 2px grey;
-    font-family:"Inter",sans-serif;
     font-size:15px;
     color: #A1CBCF;
     padding: 15px 32px;
@@ -261,8 +253,8 @@ tr{
 
 
 /* ----------- SAMPLE LIST PAGE ----------- */
-.content #todo-list {
-    font-family: "Inter",sans-serif;
+.content .todo-list-container {
+    width:75%;
 }
 
 .content #todo-list .todo {
@@ -271,6 +263,64 @@ tr{
     margin-bottom: 30px;
     gap: 25px;
 }
+
+.content #new-task-container {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding-left:5px;
+}
+
+.content #add-task-submenu {
+    display: none;
+    position: relative;
+    top: 10px;
+    left: 0;
+    padding: 30px;
+    background-color: #f9f9f9;
+}
+
+.content #new-task-input {
+    outline:none;
+    border:none;
+    height:25px;
+    background-color:white;
+    padding:10px;
+    margin: 0 0 20px  20px;
+    width:85%;
+    font-family: "Inter", sans-serif;
+    font-size:medium;
+}
+
+.content #open-submenu-btn {
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    cursor: pointer;
+    appearance: none;
+    border: 0px;
+    position:relative;
+    font-size: x-large;
+}
+
+.content #open-submenu-btn:hover {
+    color:#4caf50;
+    transition-duration: 0.25s;
+}
+
+.content #open-submenu-btn:hover + #task-label {
+    font-weight:bolder;
+    color:#4caf50;
+    transition-duration: 0.25s;
+}
+
+.content #users-radio, #users-container {
+    display:flex;
+    flex-direction:row;
+    align-items: center;
+    gap:25px;
+}
+
 
 /* Start ChatGPT code - rheanafrancesca */
 .content #todo-list .todo input[type="checkbox"] {
@@ -296,5 +346,49 @@ tr{
     left: 3px; /* Adjust the horizontal position */
     line-height: 1;
 }
+
+
+.radio-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+/* Hide the default radio button */
+input[type="radio"] {
+    display: none;
+}
+
+/* Custom style for the radio button */
+input[type="radio"] + label {
+    position: relative;
+    padding-left: 35px; /* Space for custom radio button */
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 20px;
+    display: inline-block;
+    user-select: none; /* Disable text selection */
+}
+
+/* Custom radio button appearance */
+input[type="radio"] + label::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid #007BFF; /* Blue border */
+    border-radius: 50%;
+    background-color: white;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* On radio button checked state */
+input[type="radio"]:checked + label::before {
+    background-color: #007BFF; /* Blue background */
+    border-color: #007BFF;
+}
+
 
 /* End ChatGPT code - rheanafrancesca */

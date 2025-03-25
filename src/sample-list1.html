@@ -23,13 +23,32 @@
             <h1 class="title">Sample List 1</h1>
             <p class="list-description"><b>List Description: </b>This is a sample list.</p>
             <p><b>Deadline: </b><span id="date-id1"></span></p>
-            <p><b>Members: </b><span id="users-id1"></span></p>
+            <p><b>Users: </b><span id="users-id1"></span></p>
         </div>
         
         <div class="list-subcontent">
             
             <!--Container to display list-->
-            <div id="todo-list"></div>
+            <div class="todo-list-container">
+                <div id="todo-list"></div>
+                <div>
+                    <div id="new-task-container">
+                        <button id="open-submenu-btn">+</button>
+                        <label for="open-submenu-btn" id="task-label">Add Task</label>
+                    </div>
+                    <!-- Submenu that will open when the button is clicked -->
+                    <div id="add-task-submenu">
+                        <label for="new-task-input" id="new-task-input-label"><b>Task: </b></label>
+                        <input type="text" id="new-task-input" placeholder="Enter your new task" />
+                        <div id="users-radio">
+                            <p><b>User: </b></p>
+                            <div id="users-container"></div>
+                        </div>
+                        <br>
+                        <button id="add-task-btn">Add</button>
+                    </div>
+                </div>
+            </div>
     
             <div class="leaderboard">
                 <h1>LEADERBOARD</h1>
@@ -49,11 +68,17 @@
     <script src="JS/sample-list.js"></script>
     <script>
         displayFixedDate('2025-04-08', "date-id1");
-        fetchUsers(0,3,"users-id1");
+        fetchThenDisplayBasic(0,3,"users-id1");
 
         const userIds = [1, 2, 3];
         userIds.forEach(userId => {
             getSingleUsersTodos(userId);
+        });
+
+        openSubmenu();
+
+        fetchUsers(0, 3).then(users => {
+            displayUsersAsRadioButtons(users);
         });
     </script>
 </body>

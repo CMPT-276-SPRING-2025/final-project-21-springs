@@ -1,21 +1,33 @@
 ///////////////////// ChatGPT generated/assisted code - rheanafrancesca /////////////////////
 
 // Function to fetch user data from the DummyJSON API through user ID
-function fetchUsers(start,end,listId) {
-    fetch('https://dummyjson.com/users')
-    .then(response => response.json()) // Parse the response as JSON
-    .then(data => {
-        // Display the users
-        const users = data.users.slice(start, end);
+function fetchUsers(start, end) {
+    return fetch('https://dummyjson.com/users')
+        .then(response => response.json()) // Parse the response as JSON
+        .then(data => {
+            // Slice the users data to get the specified range
+            return data.users.slice(start, end);
+        })
+        .catch(error => {
+            console.error('Error fetching users:', error);
+            return []; // Return an empty array in case of error
+        });
+}
 
-        // Map user information into an array and join them into one line
-        const usersList = users.map(user => `${user.firstName}`).join(', ');
+// Function to display the users
+function displayUsers(users, listId) {
+    // Map user information into an array and join them into one line
+    const usersList = users.map(user => `${user.firstName}`).join(', ');
 
-        document.getElementById(listId).textContent = usersList;
-    })
-    .catch(error => {
-        console.error('Error fetching users:', error);
-    });
+    // Display the users in the specified element
+    document.getElementById(listId).textContent = usersList;
+}
+
+function fetchThenDisplayBasic(start, end, userIds) {
+    fetchUsers(start, end)
+        .then(users => {
+            displayUsers(users, userIds);
+        })
 }
 
 
@@ -31,30 +43,3 @@ function displayFixedDate(inputDate, dateId) {
 }
 
 ///////////////////// End ChatGPT generated code - rheanafrancesca /////////////////////
-
-let sampleList1Btn = document.querySelector(".samplelist1");
-let sampleList2Btn = document.querySelector(".samplelist2");
-let sampleList3Btn = document.querySelector(".samplelist3");
-
-
-sampleList1Btn.addEventListener("click", () => {
-    window.location.href = "sample-list1.html";
-});
-
-sampleList2Btn.addEventListener("click", () => {
-    window.location.href = "sample-list2.html";
-});
-
-sampleList3Btn.addEventListener("click", () => {
-    window.location.href = "sample-list3.html";
-});
-
-// Dates for Lists
-displayFixedDate('2025-04-08', "date-id1");
-displayFixedDate('2025-06-12', "date-id2");
-displayFixedDate('2025-05-27', "date-id3");
-
-// Users for Lists
-fetchUsers(0,3,"users-id1");
-fetchUsers(12,15,"users-id2");
-fetchUsers(6,9,"users-id3");

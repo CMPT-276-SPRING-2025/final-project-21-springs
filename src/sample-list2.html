@@ -29,7 +29,13 @@
         <div class="list-subcontent">
             
             <!--Container to display list-->
-            <div id="todo-list"></div>
+            <div class="todo-list-container">
+                <div id="todo-list"></div>
+                <div>
+                    <button id="add-task-btn">+</button>
+                    <input type="text" id="new-task-input" placeholder="Enter your new task" />
+                </div>
+            </div>
     
             <div class="leaderboard">
                 <h1>LEADERBOARD</h1>
@@ -49,7 +55,7 @@
     <script src="JS/sample-list.js"></script>
     <script>
         displayFixedDate('2025-06-12', "date-id2");
-        fetchUsers(12,15,"users-id2");
+        fetchThenDisplayBasic(12,15,"users-id2");
 
         const userIds = [13, 14, 15];
         userIds.forEach(userId => {
