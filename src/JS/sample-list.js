@@ -18,7 +18,7 @@ function getSingleUsersTodos(userId) {
 
         // Create a span to show the todo task
         const todoText = document.createElement('span');
-        todoText.textContent = todo.todo;
+        todoText.textContent = todo.todo + " " + todo.userId;
 
         // Append checkbox and todo text to the todoElement
         todoElement.appendChild(checkbox);
