@@ -1,6 +1,3 @@
-///////////////////// ChatGPT generated/assisted code - rheanafrancesca /////////////////////
-
-// Function to fetch user data from the DummyJSON API through user ID
 function fetchUsers(start, end) {
     return fetch('https://dummyjson.com/users')
         .then(response => response.json()) // Parse the response as JSON
@@ -14,22 +11,26 @@ function fetchUsers(start, end) {
         });
 }
 
-// Function to display the users
+// Function to display the users (member list)
+let userArray = [];
 function displayUsers(users, listId) {
     // Map user information into an array and join them into one line
     const usersList = users.map(user => `${user.firstName}`).join(', ');
+    
+    // Update the member list array
+    userArray = users.map(user => `${user.firstName}`);
 
     // Display the users in the specified element
     document.getElementById(listId).textContent = usersList;
+    console.log("Member list:", userArray);
 }
 
 function fetchThenDisplayBasic(start, end, userIds) {
     fetchUsers(start, end)
         .then(users => {
             displayUsers(users, userIds);
-        })
+        });
 }
-
 
 // Function to display a fixed date
 function displayFixedDate(inputDate, dateId) {
@@ -42,4 +43,4 @@ function displayFixedDate(inputDate, dateId) {
     document.getElementById(dateId).textContent = formattedDate;
 }
 
-///////////////////// End ChatGPT generated code - rheanafrancesca /////////////////////
+
