@@ -44,3 +44,52 @@ function displayFixedDate(inputDate, dateId) {
 }
 
 
+let globalUsers = [];
+let extraPoints = {};
+
+// Modified loadLeaderboard function to merge API points and extraPoints
+// and then filter only the users in the member list (userArray)
+async function loadLeaderboard() {
+    const leaderboardElement = document.getElementById("leaderboard");
+    try {
+        // Fetch users and store globally
+        const usersResponse = await fetch("https://dummyjson.com/users");
+        const usersData = await usersResponse.json();
+        let users = usersData.users;
+        globalUsers = users;  // store users for later lookup
+
+        // Fetch todos (tasks)
+        const todosResponse = await fetch("https://dummyjson.com/todos");
+        const todosData = await todosResponse.json();
+        let todos = todosData.todos;
+
+        // Calculate points from API tasks (10 points per completed task)
+        let apiPoints = {};
+        todos.forEach(todo => {
+            if (todo.completed) {
+                apiPoints[todo.userId] = (apiPoints[todo.userId] || 0) + 10;
+            }
+        });
+
+        // Merge API points with any extra points added manually
+        let allUsers = users.map(user => {
+            let points = (apiPoints[user.id] || 0) + (extraPoints[user.id] || 0);
+            return { name: user.firstName, id: user.id, points: points };
+        });
+
+        // Filter to include only users that are in the member list (userArray)
+        allUsers = allUsers.filter(user => userArray.includes(user.name));
+
+        // Sort users by points in descending order
+        allUsers.sort((a, b) => b.points - a.points);
+
+        // Build and display the leaderboard HTML
+        let htmlString = "";
+        allUsers.forEach(user => {
+            htmlString += `<li>${user.name} - ${user.points}</li>`;
+        });
+        leaderboardElement.innerHTML = htmlString;
+    } catch (error) {
+        console.error("Error loading leaderboard:", error);
+    }
+}
