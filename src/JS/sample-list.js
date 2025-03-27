@@ -150,32 +150,3 @@ async function updateTaskCompletion(taskId, isCompleted) {
     console.error(`Failed to update task ${taskId}.`);
   }
 }
-
-function displayUsersAsRadioButtons(users) {
-  const container = document.getElementById('users-container');
-  container.innerHTML = ''; // Clear the container before adding new content
-
-  users.forEach((user, index) => {
-    const radioBtnWrapper = document.createElement('div');
-    radioBtnWrapper.classList.add('radio-wrapper');
-
-    const radioBtn = document.createElement('input');
-    radioBtn.type = 'radio';
-    radioBtn.name = 'user'; // All radio buttons share the same name
-    radioBtn.id = `user-${index}`; // Unique ID for each radio button
-    radioBtn.value = user.id; // Assuming the user object has an 'id' field
-
-    const label = document.createElement('label');
-    label.setAttribute('for', `user-${index}`);
-    label.textContent = `${user.firstName}`;
-
-    radioBtnWrapper.appendChild(radioBtn);
-    radioBtnWrapper.appendChild(label);
-    container.appendChild(radioBtnWrapper);
-  });
-}
-
-
-
-
-///////////////////// End ChatGPT generated code - rheanafrancesca /////////////////////
