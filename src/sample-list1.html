@@ -19,12 +19,22 @@
     </div>
 
     <div class="content">
-        <div class="list-header">
-            <h1 class="title">Sample List 1</h1>
-            <p class="list-description"><b>List Description: </b>This is a sample list.</p>
-            <p><b>Deadline: </b><span id="date-id1"></span></p>
-            <p><b>Users: </b><span id="users-id1"></span></p>
-        </div>
+        <h1 class="title">Sample List 1</h1>
+        <table style="width: 100%; border: none">  
+            <tr>
+                <td style="vertical-align: top; padding-right: 20px; border: none">
+                    <p class="list-description"><b>List Description: </b>This is a sample list.</p>
+                    <p><b>Deadline: </b><span id="date-id1"></span></p>
+                    <p><b>Users: </b><span id="users-id1"></span></p>
+                </td>
+                <td style="vertical-align: top; border: none; ">
+                    <p id="projectdetails"><b>Countdown: </b><span id="countdown"></span></p>
+                    <p id="projectdetails"><b>Progress: </b><span id="progress"></span></p>
+                    <p id="projectdetails"><b>Age of project: </b><span id="age"></span></p>
+                </td>
+            </tr>
+        </table>
+        
         
         <div class="list-subcontent">
             
@@ -80,6 +90,68 @@
         fetchUsers(0, 3).then(users => {
             displayUsersAsRadioButtons(users);
         });
+
+        async function getProjectAge() {
+            const projectCreationDate = "2025-03-01"; 
+
+            const url = `https://digidates.de/api/v1/age/${projectCreationDate}`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                const { ageextended } = data;
+                document.getElementById('age').innerText = 
+                    `The project is ${ageextended.days} days old`;
+            } catch (error) {
+                console.error("Error fetching age data:", error);
+            }
+        }
+
+        async function getProgressbar(){
+            const url = `https://digidates.de/api/v1/progress?start=2025-03-01&end=2025-04-08`;
+
+            try {
+                const response = await fetch(url);
+        
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                document.getElementById('progress').innerText = `${data.percent}%`;
+            } catch (error) {
+                console.error("Error fetching progress data:", error);
+            }
+        }
+        async function getCountdown() {
+            const url = `https://digidates.de/api/v1/countdown/2025-04-08`;
+
+            try {
+                const response = await fetch(url);
+    
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log(data); // Check the actual response structure
+
+        // Corrected property access based on the actual API response
+                const { days, daysonly } = data;
+
+                document.getElementById('countdown').innerText = 
+                    `${daysonly} days until the due date`;
+            } catch (error) {
+                console.error("Error fetching countdown data:", error);
+            }
+        }
+
+    // Calling the functions
+    getProjectAge();
+    getProgressbar();
+    getCountdown();
     </script>
 </body>
 </html>

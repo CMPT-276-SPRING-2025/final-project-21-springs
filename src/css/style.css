@@ -390,5 +390,17 @@ input[type="radio"]:checked + label::before {
     border-color: #007BFF;
 }
 
+#projectdetails {
+    text-align: right;
+    display: flex;
+    gap: 0; /* Remove gap between flex items */
+    justify-content: flex-end;
+    align-items: baseline;
+}
 
+/* If there's still spacing between elements */
+#projectdetails p {
+    margin: 0;
+    padding: 0 10px; /* Adjust padding as needed */
+}
 /* End ChatGPT code - rheanafrancesca */
