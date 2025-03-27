@@ -132,21 +132,3 @@ function addTaskButton() {
 document.addEventListener('DOMContentLoaded', function () {
   addTaskButton();
 });
-
-async function updateTaskCompletion(taskId, isCompleted) {
-  const response = await fetch(`https://dummyjson.com/todos/${taskId}`, {
-    method: 'PUT',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-        completed: isCompleted
-    })
-  });
-
-  if (response.ok) {
-    console.log(`Task ${taskId} updated successfully!`);
-  } else {
-    console.error(`Failed to update task ${taskId}.`);
-  }
-}
