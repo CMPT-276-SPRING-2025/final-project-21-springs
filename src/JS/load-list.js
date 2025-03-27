@@ -93,3 +93,40 @@ async function loadLeaderboard() {
         console.error("Error loading leaderboard:", error);
     }
 }
+
+async function updateTaskCompletion(taskId, isCompleted) {
+    const response = await fetch(`https://dummyjson.com/todos/${taskId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ completed: isCompleted })
+    });
+
+    if (response.ok) {
+        const completer = window.prompt("User name which completed the task:");
+        if (completer) {
+            // Find the user in globalUsers by first name (case-insensitive)
+            let foundUser = globalUsers.find(user => user.firstName.toLowerCase() === completer.trim().toLowerCase());
+            if (foundUser) {
+                // Only update if the user is in the member list (userArray)
+                if (userArray.includes(foundUser.firstName)) {
+                    // Add 10 points to the user's extra points
+                    extraPoints[foundUser.id] = (extraPoints[foundUser.id] || 0) + 10;
+                    console.log(`Task ${taskId} was completed by ${foundUser.firstName}!`);
+                    // Update the leaderboard to reflect the new points
+                    loadLeaderboard();
+                } else {
+                    console.error("The entered user is not a member of the list.");
+                }
+            } else {
+                console.error("User not found in the fetched data.");
+            }
+        }
+    } else {
+        console.error(`Failed to update task ${taskId}.`);
+    }
+}
+
+// Call leaderboard function on page load
+document.addEventListener("DOMContentLoaded", loadLeaderboard);
