@@ -28,8 +28,8 @@
                     <p><b>Users: </b><span id="users-id1"></span></p>
                 </td>
                 <td style="vertical-align: top; border: none; ">
-                    <p id="projectdetails"><b>Countdown: </b><span id="countdown"></span></p>
-                    <p id="projectdetails"><b>Progress: </b><span id="progress"></span></p>
+                    <p id="projectdetails"><b> </b><span id="countdown"></span></p>
+                    <p id="projectdetails"><b> </b><span id="progress"></span></p>
                     <p id="projectdetails"><b> </b><span id="age"></span></p>
                 </td>
             </tr>
@@ -91,10 +91,12 @@
             displayUsersAsRadioButtons(users);
         });
 
+        //this part of for the age api implementation from digidates
         async function getProjectAge() {
             const projectCreationDate1 = "2025-02-10"; 
             const url = `https://digidates.de/api/v1/age/${projectCreationDate1}`;
 
+            //this part of the code for checking if there is a property under ageextended that is 0, if so it will not be displayed.
             try {
                 const response = await fetch(url);
                 const data = await response.json();
@@ -121,6 +123,7 @@
             }
         }
 
+        //this part of for the progress bar api implementation from digidates
         async function getProgressbar(){
             const url = `https://digidates.de/api/v1/progress?start=2025-02-10&end=2025-04-08`;
 
@@ -134,12 +137,16 @@
                 const data = await response.json();
 
                 document.getElementById('progress').innerText = `${data.percent}%`;
+
+                //this part of the code helps the visual green progress bar to be shown on the webpage
                 document.getElementById('progress').style.setProperty('--progress-width', data.percent + "%");
-                
+
             } catch (error) {
                 console.error("Error fetching progress data:", error);
             }
         }
+
+        //this part of for the countdown api implementation from digidates
         async function getCountdown() {
             const url = `https://digidates.de/api/v1/countdown/2025-04-08`;
 
@@ -151,9 +158,10 @@
                 }
 
                 const data = await response.json();
-                console.log(data); // Check the actual response structure
+                // Check the actual response structure for error handling
+                console.log(data); 
 
-        // Corrected property access based on the actual API response
+                // Corrected property access based on the actual API response
                 const { days, daysonly } = data;
 
                 document.getElementById('countdown').innerText = 

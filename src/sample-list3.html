@@ -28,8 +28,8 @@
                     <p><b>Users: </b><span id="users-id3"></span></p>
                 </td>
                 <td style="vertical-align: top; border: none; ">
-                    <p id="projectdetails"><b>Countdown: </b><span id="countdown"></span></p>
-                    <p id="projectdetails"><b>Progress: </b><span id="progress"></span></p>
+                    <p id="projectdetails"><b> </b><span id="countdown"></span></p>
+                    <p id="projectdetails"><b> </b><span id="progress"></span></p>
                     <p id="projectdetails"><b> </b><span id="age"></span></p>
                 </td>
             </tr>
@@ -116,8 +116,10 @@
                 const data = await response.json();
 
                 document.getElementById('progress').innerText = `${data.percent}%`;
+
+                //this part of the code helps the visual green progress bar to be shown on the webpage
                 document.getElementById('progress').style.setProperty('--progress-width', data.percent + "%");
-                
+
             } catch (error) {
                 console.error("Error fetching progress data:", error);
             }
