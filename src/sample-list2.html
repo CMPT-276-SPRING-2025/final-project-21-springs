@@ -25,10 +25,7 @@
             <p><b>Deadline: </b><span id="date-id2"></span></p>
             <p><b>Members: </b><span id="users-id2"></span></p>
         </div>
-        
         <div class="list-subcontent">
-            
-            <!--Container to display list-->
             <div class="todo-list-container">
                 <div id="todo-list"></div>
                 <div>
@@ -36,43 +33,35 @@
                         <button id="open-submenu-btn">+</button>
                         <label for="open-submenu-btn" id="task-label">Add Task</label>
                     </div>
-                    <!-- Submenu that will open when the button is clicked -->
                     <div id="add-task-submenu">
                         <label for="new-task-input" id="new-task-input-label"><b>Task:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b></label>
-                        <input type="text" id="new-task-input" placeholder="Enter your new task" />
-                        <label for="new-task-input" id="new-task-input-label"><b>Description: </b></label>
-                        <input type="text" id="new-task-input" placeholder="Enter Task Description">
+                        <input type="text" id="new-task" placeholder="Enter your new task" />
+                        <label for="new-task-input" id="new-task-description-label"><b>Description: </b></label>
+                        <input type="text" id="new-task-description" placeholder="Enter Task Description">
                         <br>
                         <button id="add-task-btn">Add</button>
                     </div>
                 </div>
             </div>
-    
             <div class="leaderboard">
                 <h1>LEADERBOARD</h1>
                 <ul id="leaderboard"></ul>
             </div>
         </div>
-
-        
     </div>
-
     <div id="footer">
         <footer>
         </footer>
     </div>
-
     <script src="JS/load-list.js"></script>
     <script src="JS/sample-list.js"></script>
     <script>
         displayFixedDate('2025-06-12', "date-id2");
         fetchThenDisplayBasic(12,15,"users-id2");
-
         const userIds = [13, 14, 15];
         userIds.forEach(userId => {
             getSingleUsersTodos(userId);
         });
-
         openSubmenu();
     </script>
 </body>
