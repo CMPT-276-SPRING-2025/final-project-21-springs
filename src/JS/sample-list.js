@@ -97,13 +97,15 @@ function openSubmenu() {
 
 function addTaskButton() {
   document.getElementById('add-task-btn').addEventListener('click', function() {
-    const taskInput = document.getElementById('new-task-input').value.trim();
+    const taskInput = document.getElementById('new-task').value.trim();
+    const taskDescription = document.getElementById("new-task-description").value.trim();
     const userId = 5;
 
     if (taskInput) {
       console.log('Adding task:', taskInput);
       addTask(taskInput, userId);
-      document.getElementById('new-task-input').value = '';
+      document.getElementById('new-task').value = "";
+      document.getElementById("new-task-description").value = "";
     } else {
       alert('Please enter a task.');
     }
