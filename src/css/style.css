@@ -400,7 +400,28 @@ input[type="radio"]:checked + label::before {
 
 /* If there's still spacing between elements */
 #projectdetails p {
-    margin: 0;
-    padding: 0 10px; /* Adjust padding as needed */
+    text-align: right;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+/* Progress bar styling */
+#progress {
+
+    display: inline-block;
+    width: 200px; /* Adjust width as needed */
+    height: 20px;
+    background-color: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+#progress::before {
+    content: "";
+    display: block;
+    height: 100%;
+    width: var(--progress-width, 0%);
+    background-color: green; /* Green progress bar */
+    transition: width 0.5s ease-in-out;
 }
 /* End ChatGPT code - rheanafrancesca */
