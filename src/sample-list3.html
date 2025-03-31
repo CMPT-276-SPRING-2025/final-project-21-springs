@@ -26,25 +26,29 @@
         </div>
         
         <div class="list-subcontent">
-            
-            <!--Container to display list-->
             <div class="todo-list-container">
                 <div id="todo-list"></div>
                 <div>
-                    <button id="add-task-btn">+</button>
-                    <input type="text" id="new-task-input" placeholder="Enter your new task" />
+                    <div id="new-task-container">
+                        <button id="open-submenu-btn">+</button>
+                        <label for="open-submenu-btn" id="task-label">Add Task</label>
+                    </div>
+                    <div id="add-task-submenu">
+                        <label for="new-task-input" id="new-task-input-label"><b>Task:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b></label>
+                        <input type="text" id="new-task" placeholder="Enter your new task" />
+                        <label for="new-task-input" id="new-task-description-label"><b>Description: </b></label>
+                        <input type="text" id="new-task-description" placeholder="Enter Task Description">
+                        <br>
+                        <button id="add-task-btn">Add</button>
+                    </div>
                 </div>
             </div>
-    
             <div class="leaderboard">
                 <h1>LEADERBOARD</h1>
                 <ol id="leaderboard"></ol>
             </div>
         </div>
-
-        
     </div>
-
     <div id="footer">
         <footer>
         </footer>
@@ -60,6 +64,8 @@
         userIds.forEach(userId => {
             getSingleUsersTodos(userId);
         });
+
+        openSubmenu();
     </script>
 </body>
 </html>
