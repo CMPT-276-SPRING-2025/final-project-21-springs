@@ -9,11 +9,10 @@
 <body>
     <div id="nav">
         <nav>
-            <div class="logo"><a href="/final-project-21-springs/">To Duel</a></div>
+            <div class="logo"><a href="/">To Duel</a></div>
             <ul class="menu">
-                <li><a href="/final-project-21-springs/">Home</a></li>
-                <li><a href="/final-project-21-springs/about.html">About</a></li>
-                <li><a href="/final-project-21-springs/sign-up-sign-in.html">Sign Up/Sign In</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="about.html">About</a></li>
             </ul>
         </nav>
     </div>
@@ -36,41 +35,46 @@
         </table>
         
         <div class="list-subcontent">
-            
-            <!--Container to display list-->
             <div class="todo-list-container">
                 <div id="todo-list"></div>
                 <div>
-                    <button id="add-task-btn">+</button>
-                    <input type="text" id="new-task-input" placeholder="Enter your new task" />
+                    <div id="new-task-container">
+                        <button id="open-submenu-btn">+</button>
+                        <label for="open-submenu-btn" id="task-label">Add Task</label>
+                    </div>
+                    <div id="add-task-submenu">
+                        <label for="new-task-input" id="new-task-input-label"><b>Task:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b></label>
+                        <input type="text" id="new-task" placeholder="Enter your new task" />
+                        <label for="new-task-input" id="new-task-description-label"><b>Description: </b></label>
+                        <input type="text" id="new-task-description" placeholder="Enter Task Description">
+                        <br>
+                        <button id="add-task-btn">Add</button>
+                    </div>
                 </div>
             </div>
-    
             <div class="leaderboard">
                 <h1>LEADERBOARD</h1>
-                <ul id="leaderboard"></ul>
+                <ol id="leaderboard"></ol>
             </div>
         </div>
-
-        
     </div>
-
     <div id="footer">
         <footer>
         </footer>
     </div>
-
     <script src="JS/load-list.js"></script>
     <script src="JS/sample-list.js"></script>
     <script>
 
         displayFixedDate('2025-06-12', "date-id2");
         fetchThenDisplayBasic(12,15,"users-id2");
-
         const userIds = [13, 14, 15];
         userIds.forEach(userId => {
             getSingleUsersTodos(userId);
         });
+      
+        openSubmenu() 
+
 
          //this part of for the age api implementation from digidates
         async function getProjectAge() {
