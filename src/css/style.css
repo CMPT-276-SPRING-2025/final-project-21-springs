@@ -401,4 +401,38 @@ input[type="radio"]:checked + label::before {
     border-color: #007BFF;
 }
 
+/* End ChatGPT code - rheanafrancesca */
 
+#projectdetails {
+    text-align: right;
+    display: flex;
+    gap: 0; /* Remove gap between flex items */
+    justify-content: flex-end;
+    align-items: baseline;
+}
+
+/* If there's still spacing between elements */
+#projectdetails p {
+    text-align: right;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+/* Progress bar styling */
+#progress {
+    display: inline-block;
+    width: 200px; /* Adjust width as needed */
+    height: 20px;
+    background-color: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+#progress::before {
+    content: "";
+    display: block;
+    height: 100%;
+    width: var(--progress-width, 0%);
+    background-color: green; /* Green progress bar */
+    transition: width 0.5s ease-in-out;
+}
