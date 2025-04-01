@@ -21,7 +21,7 @@
         <!-- This is where the page's content goes-->
         <div id="create-list-header">
             <input type="text" id="list-name" placeholder="Name your To Do List.">
-            <a href="list.html" class="button">Create List</a>
+            <a href="list.html" class="button" id="create-list-button">Create List</a>
         </div>
 
         <h2>What's your to do list about?</h2>
@@ -37,6 +37,27 @@
         <footer>
         </footer>
     </div>
+
+    <script src="JS/load-list.js"></script>
+    <script src="JS/sample-list.js"></script>
+    <script src="JS/digidates.js"></script>
+    <script>
+        // START ChatGPT generated code - rheanafrancesca
+        document.getElementById('create-list-button').addEventListener('click', function(event) {
+        event.preventDefault();
+        
+        const listName = document.getElementById('list-name').value;
+        const listDescription = document.getElementById('list-description').value;
+        const listDeadline = document.getElementById('list-deadline').value;
+
+        sessionStorage.setItem('listName', listName);
+        sessionStorage.setItem('listDescription', listDescription);
+        sessionStorage.setItem('listDeadline', listDeadline);
+
+        window.location.href = 'list.html';
+    });
+        // END ChatGPT generated code - rheanafrancesca
+    </script>
 
 
 </body>
