@@ -21,23 +21,55 @@
         <!-- This is where the page's content goes-->
         <div id="create-list-header">
             <input type="text" id="list-name" placeholder="Name your To Do List.">
-            <!--Update button link-->
-            <a href="list.html" class="button">Create List</a>
+            <a href="list.html" class="button" id="create-list-button">Create List</a>
         </div>
 
         <h2>What's your to do list about?</h2>
         <input type="text" id="list-description" placeholder="Enter to do list description.">
         <br><br>
 
+        <h2>When's your start date?</h2>
+        <input type="date" id="list-startDate">
+        <br><br>
+
         <h2>When's your deadline?</h2>
         <input type="date" id="list-deadline">
-        <br>
+        <br><br>
+
+        <h2>How many members do you want to add?</h2>
+        <input type="number" id="list-members" min="1" max="5" placeholder="0">
+        <br><br>
     </div>
 
     <div id="footer">
         <footer>
         </footer>
     </div>
+
+    <script src="JS/load-list.js"></script>
+    <script src="JS/sample-list.js"></script>
+    <script src="JS/digidates.js"></script>
+    <script>
+        // START ChatGPT generated code - rheanafrancesca
+        document.getElementById('create-list-button').addEventListener('click', function(event) {
+        event.preventDefault();
+        
+        const listName = document.getElementById('list-name').value;
+        const listDescription = document.getElementById('list-description').value;
+        const listStartDate = document.getElementById('list-startDate').value;
+        const listDeadline = document.getElementById('list-deadline').value;
+        const listMembers = document.getElementById('list-members').value;
+
+        sessionStorage.setItem('listName', listName);
+        sessionStorage.setItem('listDescription', listDescription);
+        sessionStorage.setItem('listStartDate', listStartDate);
+        sessionStorage.setItem('listDeadline', listDeadline);
+        sessionStorage.setItem('listMembers', listMembers);
+
+        window.location.href = 'list.html';
+    });
+        // END ChatGPT generated code - rheanafrancesca
+    </script>
 
 
 </body>

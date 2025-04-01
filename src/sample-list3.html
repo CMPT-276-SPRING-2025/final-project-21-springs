@@ -18,21 +18,23 @@
     </div>
 
     <div class="content">
-        <h1 class="title">Sample List 3</h1>
-        <table style="width: 100%; border: none">  
-            <tr>
-                <td style="vertical-align: top; padding-right: 20px; border: none">
-                    <p class="list-description"><b>List Description: </b>This is a sample list.</p>
-                    <p><b>Deadline: </b><span id="date-id3"></span></p>
-                    <p><b>Users: </b><span id="users-id3"></span></p>
-                </td>
-                <td style="vertical-align: top; border: none; ">
-                    <p id="projectdetails"><b> </b><span id="countdown"></span></p>
-                    <p id="projectdetails"><b> </b><span id="progress"></span></p>
-                    <p id="projectdetails"><b> </b><span id="age"></span></p>
-                </td>
-            </tr>
-        </table>
+        <div class="list-header">
+            <h1 class="title">Sample List 3</h1>
+            <table style="width: 100%; border: none; border-spacing: 0">  
+                <tr>
+                    <td style="vertical-align: top; padding-right: 20px; border: none">
+                        <p class="list-description"><b>List Description: </b>This is a sample list.</p>
+                        <p><b>Deadline: </b><span id="date-id3"></span></p>
+                        <p><b>Users: </b><span id="users-id3"></span></p>
+                    </td>
+                    <td style="vertical-align: top; border: none; ">
+                        <p class="projectdetails"><b> </b><span id="countdown"></span></p>
+                        <p class="projectdetails"><b> </b><span id="progress"></span></p>
+                        <p class="projectdetails"><b> </b><span id="age"></span></p>
+                    </td>
+                </tr>
+            </table>
+        </div>
         
         <div class="list-subcontent">
             <div class="todo-list-container">
@@ -65,8 +67,12 @@
 
     <script src="JS/load-list.js"></script>
     <script src="JS/sample-list.js"></script>
+    <script src="JS/digidates.js"></script>
     <script>
-        displayFixedDate('2025-05-27', "date-id3");
+        const projectCreationDate = '2025-03-05'; 
+        const projectEndDate = '2025-05-27';
+
+        displayFixedDate(projectEndDate, "date-id3");
         fetchThenDisplayBasic(5,9,"users-id3");
 
         const userIds = [6, 7, 8, 9];
@@ -75,90 +81,10 @@
         });
       
         openSubmenu();
-        
-        //this part of for the age api implementation from digidates
-        async function getProjectAge() {
-            const projectCreationDate3 = "2025-03-05"; 
-            const url = `https://digidates.de/api/v1/age/${projectCreationDate3}`;
 
-            //this part of the code for checking if there is a property under ageextended that is 0, if so it will not be displayed.
-            try {
-                const response = await fetch(url);
-                const data = await response.json();
-                const { ageextended } = data;
-
-                let ageText = "The project is ";
-                if (ageextended.years > 0) {
-                    ageText += `${ageextended.years} ${ageextended.years === 1 ? 'year' : 'years'}`;
-                }
-                if (ageextended.months > 0) {
-                    if (ageextended.years > 0) ageText += ", ";
-                    ageText += `${ageextended.months} ${ageextended.months === 1 ? 'month' : 'months'}`;
-                }
-                if (ageextended.days > 0 || (ageextended.years === 0 && ageextended.months === 0)) {
-                    if (ageextended.years > 0 || ageextended.months > 0) ageText += " and ";
-                    ageText += `${ageextended.days} ${ageextended.days === 1 ? 'day' : 'days'}`;
-                }
-                ageText += " old";
-
-                document.getElementById('age').innerText = ageText;
-            } catch (error) {
-                console.error("Error fetching age data:", error);
-            }
-        }
-
-        //this part of for the progress bar api implementation from digidates
-        async function getProgressbar(){
-            const url = `https://digidates.de/api/v1/progress?start=2025-03-05&end=2025-05-27`;
-
-            try {
-                const response = await fetch(url);
-        
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-
-                const data = await response.json();
-
-                document.getElementById('progress').innerText = `${data.percent}%`;
-
-                //this part of the code helps the visual green progress bar to be shown on the webpage
-                document.getElementById('progress').style.setProperty('--progress-width', data.percent + "%");
-
-            } catch (error) {
-                console.error("Error fetching progress data:", error);
-            }
-        }
-
-        //this part of for the countdown api implementation from digidates
-        async function getCountdown() {
-            const url = `https://digidates.de/api/v1/countdown/2025-05-27`;
-
-            try {
-                const response = await fetch(url);
-    
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-
-                const data = await response.json();
-                // Check the actual response structure for error handling
-                console.log(data); 
-
-                // Corrected property access based on the actual API response
-                const { days, daysonly } = data;
-
-                document.getElementById('countdown').innerText = 
-                    `${daysonly} days until the due date`;
-            } catch (error) {
-                console.error("Error fetching countdown data:", error);
-            }
-        }
-
-        // Calling the functions
-        getProjectAge();
-        getProgressbar();
-        getCountdown();
+        getProjectAge(projectCreationDate);
+        getProgressbar(projectCreationDate, projectEndDate);
+        getCountdown(projectEndDate);   
     </script>
 </body>
 </html>

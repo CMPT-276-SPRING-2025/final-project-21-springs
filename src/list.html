@@ -19,24 +19,43 @@
 
     <div class="content">
         <div class="list-header">
-            <h1 class="title">Title</h1>
-            <p class="list-description">List Description: </p>
-            <b><p class="deadline">Deadline: </p></b>
-            <p class="members">Members: </p>
+            <h1 class="title"><span id="display-list-name"></span></h1>
+
+            <table style="width: 100%; border: none; border-spacing: 0">  
+                <tr>
+                    <td style="vertical-align: top; padding-right: 20px; border: none">
+                        <p><b>Description:</b> <span id="display-list-description"></span></p>
+                        <p><b>Deadline:</b> <span id="display-list-deadline"></span></p>
+                        <p><b>Users: </b> <span id="display-list-members"></span></p>
+                    </td>
+                    <td style="vertical-align: top; border: none; ">
+                        <p class="projectdetails"><b> </b><span id="countdown"></span></p>
+                        <p class="projectdetails"><b> </b><span id="progress"></span></p>
+                        <p class="projectdetails"><b> </b><span id="age"></span></p>
+                    </td>
+                </tr>
+            </table>  
+
         </div>
         
         <div class="list-subcontent">
             
-            <div class="add-task">
-                <ul class="add-task-menu">
-                    <input type="text" class="task-title" placeholder="Task title">
-                    <input type="text" class="task-desc" placeholder="Task description">
-                    <input type="datetime-local" class="task-deadline" placeholder="Deadline">
-                    <button class="addTaskBtn">Add Task</button>
-                </ul>
-                <table class="taskTable">
-
-                </table>
+            <div class="todo-list-container">
+                <div id="todo-list"></div>
+                <div>
+                    <div id="new-task-container">
+                        <button id="open-submenu-btn">+</button>
+                        <label for="open-submenu-btn" id="task-label">Add Task</label>
+                    </div>
+                    <div id="add-task-submenu">
+                        <label for="new-task-input" id="new-task-input-label"><b>Task:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b></label>
+                        <input type="text" id="new-task" placeholder="Enter your new task" />
+                        <label for="new-task-input" id="new-task-description-label"><b>Description: </b></label>
+                        <input type="text" id="new-task-description" placeholder="Enter Task Description">
+                        <br>
+                        <button id="add-task-btn">Add</button>
+                    </div>
+                </div>
             </div>
     
             <div class="leaderboard">
@@ -51,6 +70,42 @@
         <footer>
         </footer>
     </div>
+
+    <script src="JS/load-list.js"></script>
+    <script src="JS/sample-list.js"></script>
+    <script src="JS/digidates.js"></script>
+    <script>
+        function getRandomInt(min, max) {
+            min = Math.ceil(min); // Ensure the minimum is rounded up
+            max = Math.floor(max); // Ensure the maximum is rounded down
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        // START ChatGPT generated code - rheanafrancesca
+        const listName = sessionStorage.getItem('listName');
+        const listDescription = sessionStorage.getItem('listDescription');
+        const listStartDate = sessionStorage.getItem('listStartDate');
+        const listDeadline = sessionStorage.getItem('listDeadline');
+        const listMembers = sessionStorage.getItem('listMembers');
+
+        document.getElementById('display-list-name').textContent = listName;
+        document.getElementById('display-list-description').textContent = listDescription;
+        // END ChatGPT generated code - rheanafrancesca
+
+        // generate users
+        const randUserId = getRandomInt(1,25);
+        const lastUser = parseInt(randUserId)  + parseInt(listMembers);
+        fetchThenDisplayBasic(randUserId, lastUser, "display-list-members");
+        
+        displayFixedDate(listDeadline, "display-list-deadline");
+
+        getProjectAge(listStartDate);
+        getProgressbar(listStartDate, listDeadline);
+        getCountdown(listDeadline);
+
+        openSubmenu();
+
+    </script>
 
 </body>
 </html>

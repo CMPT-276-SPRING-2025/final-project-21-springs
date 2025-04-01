@@ -102,6 +102,14 @@ footer {
     border-style:solid;
 }
 
+.content #list-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 100px;
+    margin-top:75px;
+}
+
 /* ----------- SIGN UP AND SIGN IN PAGE ----------- */
 .content #auth {
     border-style:solid;
@@ -160,7 +168,7 @@ footer {
     font-size:16px;
 }
 
-.content #list-deadline {
+.content #list-deadline, #list-startDate, #list-members {
     outline:none;
     border:none;
     font-size:16px;
@@ -403,7 +411,7 @@ input[type="radio"]:checked + label::before {
 
 /* End ChatGPT code - rheanafrancesca */
 
-#projectdetails {
+.projectdetails {
     text-align: right;
     display: flex;
     gap: 0; /* Remove gap between flex items */
@@ -412,7 +420,7 @@ input[type="radio"]:checked + label::before {
 }
 
 /* If there's still spacing between elements */
-#projectdetails p {
+.projectdetails p {
     text-align: right;
     display: flex;
     align-items: center;
