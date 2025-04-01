@@ -102,6 +102,14 @@ footer {
     border-style:solid;
 }
 
+.content #list-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 100px;
+    margin-top:75px;
+}
+
 /* ----------- SIGN UP AND SIGN IN PAGE ----------- */
 .content #auth {
     border-style:solid;
