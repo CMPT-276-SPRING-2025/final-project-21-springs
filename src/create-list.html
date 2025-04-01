@@ -28,9 +28,13 @@
         <input type="text" id="list-description" placeholder="Enter to do list description.">
         <br><br>
 
+        <h2>When's your start date?</h2>
+        <input type="date" id="list-startDate">
+        <br><br>
+
         <h2>When's your deadline?</h2>
         <input type="date" id="list-deadline">
-        <br>
+        <br><br>
     </div>
 
     <div id="footer">
@@ -48,10 +52,12 @@
         
         const listName = document.getElementById('list-name').value;
         const listDescription = document.getElementById('list-description').value;
+        const listStartDate = document.getElementById('list-startDate').value;
         const listDeadline = document.getElementById('list-deadline').value;
 
         sessionStorage.setItem('listName', listName);
         sessionStorage.setItem('listDescription', listDescription);
+        sessionStorage.setItem('listStartDate', listStartDate);
         sessionStorage.setItem('listDeadline', listDeadline);
 
         window.location.href = 'list.html';
