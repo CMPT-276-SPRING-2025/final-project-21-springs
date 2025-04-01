@@ -35,6 +35,10 @@
         <h2>When's your deadline?</h2>
         <input type="date" id="list-deadline">
         <br><br>
+
+        <h2>How many members do you want to add?</h2>
+        <input type="number" id="list-members" min="1" max="5" placeholder="0">
+        <br><br>
     </div>
 
     <div id="footer">
@@ -54,11 +58,13 @@
         const listDescription = document.getElementById('list-description').value;
         const listStartDate = document.getElementById('list-startDate').value;
         const listDeadline = document.getElementById('list-deadline').value;
+        const listMembers = document.getElementById('list-members').value;
 
         sessionStorage.setItem('listName', listName);
         sessionStorage.setItem('listDescription', listDescription);
         sessionStorage.setItem('listStartDate', listStartDate);
         sessionStorage.setItem('listDeadline', listDeadline);
+        sessionStorage.setItem('listMembers', listMembers);
 
         window.location.href = 'list.html';
     });

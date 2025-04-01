@@ -168,7 +168,7 @@ footer {
     font-size:16px;
 }
 
-.content #list-deadline, #list-startDate {
+.content #list-deadline, #list-startDate, #list-members {
     outline:none;
     border:none;
     font-size:16px;
