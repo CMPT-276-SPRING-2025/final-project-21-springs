@@ -403,7 +403,7 @@ input[type="radio"]:checked + label::before {
 
 /* End ChatGPT code - rheanafrancesca */
 
-#projectdetails {
+.projectdetails {
     text-align: right;
     display: flex;
     gap: 0; /* Remove gap between flex items */
@@ -412,7 +412,7 @@ input[type="radio"]:checked + label::before {
 }
 
 /* If there's still spacing between elements */
-#projectdetails p {
+.projectdetails p {
     text-align: right;
     display: flex;
     align-items: center;

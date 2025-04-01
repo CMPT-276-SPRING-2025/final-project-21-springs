@@ -13,7 +13,7 @@ function getSingleUsersTodos(userId) {
         checkbox.disabled = false;
 
         const todoText = document.createElement('span');
-        todoText.textContent = todo.todo + " " + todo.userId;
+        todoText.textContent = todo.todo;
 
         todoElement.appendChild(checkbox);
         todoElement.appendChild(todoText);
