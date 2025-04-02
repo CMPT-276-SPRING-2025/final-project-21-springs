@@ -43,7 +43,21 @@ async function getProjectAge(projectCreationDate) {
 
 
 //this part of for the progress bar api implementation from digidates
-async function getProgressbar(projectCreationDate, projectEndDate){
+async function getProgressbar(projectCreationDate, projectEndDate) {
+    const today = new Date();
+    const projectDate = new Date(projectCreationDate);
+
+    // Format dates to YYYY-MM-DD for accurate comparison
+    const todayFormatted = today.toISOString().split('T')[0];
+    const projectFormatted = projectDate.toISOString().split('T')[0];
+
+    // Check if the project has not started yet
+    if (projectFormatted > todayFormatted) {
+        document.getElementById('progress').innerText = "0%";
+        document.getElementById('progress').style.setProperty('--progress-width', "0%");
+        return; // Stop execution if the project hasn't started
+    }
+
     const url = `https://digidates.de/api/v1/progress?start=${projectCreationDate}&end=${projectEndDate}`;
 
     try {
@@ -57,13 +71,14 @@ async function getProgressbar(projectCreationDate, projectEndDate){
 
         document.getElementById('progress').innerText = `${data.percent}%`;
 
-        //this part of the code helps the visual green progress bar to be shown on the webpage
+        // Update progress bar visual
         document.getElementById('progress').style.setProperty('--progress-width', data.percent + "%");
 
     } catch (error) {
         console.error("Error fetching progress data:", error);
     }
 }
+
 
 //this part of for the countdown api implementation from digidates
 async function getCountdown(projectEndDate) {
