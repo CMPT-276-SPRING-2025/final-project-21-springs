@@ -1,8 +1,20 @@
 //this part of for the age api implementation from digidates
 async function getProjectAge(projectCreationDate) {
+    const today = new Date();
+    const projectDate = new Date(projectCreationDate);
+
+    // Format dates to YYYY-MM-DD for accurate comparison
+    const todayFormatted = today.toISOString().split('T')[0];
+    const projectFormatted = projectDate.toISOString().split('T')[0];
+
+    // Check if the project has not begun yet
+    if (projectFormatted > todayFormatted) {
+        document.getElementById('age').innerText = "The project has not begun yet.";
+        return; // Stop execution if the project hasn't started
+    }
+
     const url = `https://digidates.de/api/v1/age/${projectCreationDate}`;
 
-    //this part of the code for checking if there is a property under ageextended that is 0, if so it will not be displayed.
     try {
         const response = await fetch(url);
         const data = await response.json();
@@ -28,6 +40,7 @@ async function getProjectAge(projectCreationDate) {
         console.error("Error fetching age data:", error);
     }
 }
+
 
 //this part of for the progress bar api implementation from digidates
 async function getProgressbar(projectCreationDate, projectEndDate){
