@@ -76,3 +76,12 @@ async function getCountdown(projectEndDate) {
         console.error("Error fetching countdown data:", error);
     }
 }
+
+
+document.addEventListener("DOMContentLoaded", function(){
+    let inputDate = document.getElementById("list-startDate");
+    let deadline = document.getElementById("list-deadline");
+    let today=new Date().toISOString().split("T")[0];
+    inputDate.setAttribute("min", today);
+    deadline.setAttribute("min",today);
+})
