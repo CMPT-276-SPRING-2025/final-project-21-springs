@@ -110,5 +110,4 @@ async function updateTaskCompletion(taskId, isCompleted) {
 }
 
 document.addEventListener("DOMContentLoaded", loadLeaderboard);
-
 export { fetchUsers };
