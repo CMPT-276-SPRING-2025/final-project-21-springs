@@ -69,28 +69,31 @@
     </div>
     <script src="JS/load-list.js"></script>
     <script src="JS/sample-list.js"></script>
-    <script src="JS/digidates.js"></script>
-    <script>
+    <script type="module">
+        import { getProjectAge, getCountdown, getProgressbar } from './JS/digidates.js';
         const projectCreationDate = '2025-02-10'; 
         const projectEndDate = '2025-04-08';
 
-        displayFixedDate(projectEndDate, "date-id1");
-        fetchThenDisplayBasic(0,3,"users-id1");
+        // Wait for DOM to load
+        document.addEventListener('DOMContentLoaded', () => {
+            displayFixedDate(projectEndDate, "date-id1");
+            fetchThenDisplayBasic(0,3,"users-id1");
 
-        const userIds = [1, 2, 3];
-        userIds.forEach(userId => {
-            getSingleUsersTodos(userId);
+            const userIds = [1, 2, 3];
+            userIds.forEach(userId => {
+                getSingleUsersTodos(userId);
+            });
+
+            openSubmenu();
+
+            fetchUsers(0, 3).then(users => {
+                displayUsersAsRadioButtons(users);
+            });
+
+            getProjectAge(projectCreationDate);
+            getProgressbar(projectCreationDate, projectEndDate);
+            getCountdown(projectEndDate);
         });
-
-        openSubmenu();
-
-        fetchUsers(0, 3).then(users => {
-            displayUsersAsRadioButtons(users);
-        });
-
-        getProjectAge(projectCreationDate);
-        getProgressbar(projectCreationDate, projectEndDate);
-        getCountdown(projectEndDate);
     </script>
 </body>
 </html>
