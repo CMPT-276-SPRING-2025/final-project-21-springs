@@ -1,5 +1,5 @@
 //this part of for the age api implementation from digidates
-async function getProjectAge(projectCreationDate) {
+async function getProjectAge(projectCreationDate, fetchFn = fetch) {
     const url = `https://digidates.de/api/v1/age/${projectCreationDate}`;
 
     //this part of the code for checking if there is a property under ageextended that is 0, if so it will not be displayed.
