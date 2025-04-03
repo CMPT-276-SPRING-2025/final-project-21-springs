@@ -24,8 +24,8 @@ jobs:
           node-version: '16.x'
 
       - name: Install Node.js dependencies
-        run: |
-          npm install node-fetch@2.6.7
+        working-directory: ./src
+        run: npm install  
 
       - name: Run unit tests
         run: |
