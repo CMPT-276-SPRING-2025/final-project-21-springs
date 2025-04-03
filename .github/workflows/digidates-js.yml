@@ -1,4 +1,4 @@
-name: Run digidates Unit Tests
+name: Run digidates Tests
 
 on:
   push:
@@ -27,7 +27,11 @@ jobs:
         run: |
           npm install node-fetch@2.6.7
 
-      - name: Run tests
+      - name: Run unit tests
         run: |
           node src/tests/digidates.test.js
+
+      - name: Run integration tests
+        run: |
+          node src/tests/digidates-api.test.js
 
