@@ -51,17 +51,17 @@ async function testGetProjectAge() {
     // Test 1: Project with years, months, and days
     let result = await getProjectAge("2022-01-01", mockFetch({ ageextended: { years: 2, months: 3, days: 10 } }));
     let expected = "The project is 2 years, 3 months and 10 days old";
-    assertEqual(result, expected, "getProjectAge years, months, and days");
+    assertEqual(result, expected, "getProjectAge with input years, months, and days");
 
     // Test 2: Project less than a month old
     result = await getProjectAge("2024-03-15", mockFetch({ ageextended: { years: 0, months: 0, days: 15 } }));
     expected = "The project is 15 days old";
-    assertEqual(result, expected, "getProjectAge projects less than a month old");
+    assertEqual(result, expected, "getProjectAge for projects less than a month old");
 
     // Test 3: API failure case
     result = await getProjectAge("2020-05-20", () => Promise.reject(new Error("API failed")));
     expected = "Error fetching age data";
-    assertEqual(result, expected, "getProjectAge API failure");
+    assertEqual(result, expected, "getProjectAge handles API failure");
 
     console.log("\ntestGetProjectAge() completed.\n");
 }
@@ -76,22 +76,24 @@ async function testGetProgressbar() {
 
     // Test 2: API failure handling
     result = await getProgressbar("2024-01-01", "2024-12-31", () => Promise.reject(new Error("API failed")));
-    assertEqual(document.getElementById('progress').innerText, "", "getProgressbar handles API failure gracefully");
+    expected = "Error fetching progress data";
+    assertEqual(result, expected, "getProgressbar handles API failure");
 
     console.log("\ntestGetProgressbar() completed.\n");
 }
-
 
 async function testGetCountdown() {
     console.log("⏱️ Running testGetCountdown()...\n");
 
     // Test 1: Project days
     let result = await getCountdown("2025-12-31", mockFetch({ daysonly: 2 }));
-    assertEqual(result, "2 days until the due date", "getCountdown days");
+    let expected = "2 days until the due date";
+    assertEqual(result, expected, "getCountdown days");
 
     // Test 2: API failure
     result = await getCountdown("2025-05-20", () => Promise.reject(new Error("API failed")));
-    assertEqual(result, "Error fetching countdown data", "getCountdown API failure");
+    expected = "Error fetching countdown data";
+    assertEqual(result, expected, "getCountdown handles API failure");
 
     console.log("\ntestGetCountdown() completed.\n");
 }
