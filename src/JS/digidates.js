@@ -1,3 +1,5 @@
+const fetch = typeof window !== 'undefined' && window.fetch ? window.fetch : require('node-fetch');
+
 //this part of for the age api implementation from digidates
 async function getProjectAge(projectCreationDate, fetchFn = fetch) {
     const url = `https://digidates.de/api/v1/age/${projectCreationDate}`;
