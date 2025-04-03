@@ -78,12 +78,5 @@ async function getCountdown(projectEndDate, fetchFn = fetch) {
     }
 }
 
-// Make function available globally for the browser
-if (typeof window !== "undefined") {
-    window.getProjectAge = getProjectAge;
-}
-
-// Export for testing (only works in a Node.js test environment)
-if (typeof module !== "undefined" && module.exports) {
-    module.exports = { getProjectAge, getProgressbar, getCountdown };
-}
+// Export for testing
+export { getProjectAge, getProgressbar, getCountdown };

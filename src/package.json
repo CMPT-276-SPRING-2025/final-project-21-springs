@@ -1,0 +1,23 @@
+{
+  "name": "final-project-21-springs",
+  "version": "1.0.0",
+  "description": "cmpt 276 final project",
+  "main": "src/index.html",
+  "type": "module",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "node src/tests/digidates.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CMPT-276-SPRING-2025/final-project-21-springs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CMPT-276-SPRING-2025/final-project-21-springs/issues"
+  },
+  "homepage": "https://github.com/CMPT-276-SPRING-2025/final-project-21-springs#readme"
+}
