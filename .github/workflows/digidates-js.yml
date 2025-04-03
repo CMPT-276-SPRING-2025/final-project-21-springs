@@ -24,7 +24,7 @@ jobs:
           node-version: '16.x'
 
       - name: Install Node.js dependencies
-        working-directory: /src
+        working-directory: ./src
         run: npm install  
 
       - name: Run unit tests
