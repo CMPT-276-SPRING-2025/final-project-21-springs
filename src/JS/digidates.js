@@ -26,7 +26,6 @@ async function getProjectAge(projectCreationDate, fetchFn = fetch) {
         return ageText;
     } catch (error) {
         console.error("Error fetching age data:", error);
-        return "Error fetching age data";
     }
 }
 
@@ -47,11 +46,10 @@ async function getProgressbar(projectCreationDate, projectEndDate, fetchFn = fet
 
         //this part of the code helps the visual green progress bar to be shown on the webpage
         document.getElementById('progress').style.setProperty('--progress-width', data.percent + "%");
+        
         return progressPercent;
-
     } catch (error) {
         console.error("Error fetching progress data:", error);
-        return "Error fetching progress data";
     }
 }
 
@@ -74,7 +72,6 @@ async function getCountdown(projectEndDate, fetchFn = fetch) {
         return countdownText;
     } catch (error) {
         console.error("Error fetching countdown data:", error);
-        return "Error fetching countdown data";
     }
 }
 

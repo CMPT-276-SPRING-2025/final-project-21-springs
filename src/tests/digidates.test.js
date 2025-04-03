@@ -1,6 +1,5 @@
-import { getProjectAge } from "../JS/digidates.js";
-import { getProgressbar } from "../JS/digidates.js";
-import { getCountdown } from "../JS/digidates.js";
+import { getProjectAge , getProgressbar, getCountdown } from "../JS/digidates.js";
+import { assertEqual, mockFetch } from "./test-helpers.js";
 
 // Mock the global `document` object for testing in a Node.js environment
 global.document = {
@@ -26,27 +25,8 @@ global.document = {
     }
 };
 
-// Helper function for test logging
-function assertEqual(actual, expected, testName) {
-    if (actual === expected) {
-        console.log(`✅ PASSED: ${testName}`);
-    } else {
-        console.error(`❌ FAILED: ${testName}\n   Expected: "${expected}"\n   Got: "${actual}"`);
-    }
-}
-
-// Mock fetch function
-function mockFetch(responseData) {
-    return function () {
-        return Promise.resolve({
-            ok: true,
-            json: () => Promise.resolve(responseData),
-        });
-    };
-}
-
-async function testGetProjectAge() {
-    console.log("⏱️ Running testGetProjectAge()...\n");
+async function testMockGetProjectAge() {
+    console.log("⏱️ Running testMockGetProjectAge()...\n");
 
     // Test 1: Project with years, months, and days
     let result = await getProjectAge("2022-01-01", mockFetch({ ageextended: { years: 2, months: 3, days: 10 } }));
@@ -60,14 +40,14 @@ async function testGetProjectAge() {
 
     // Test 3: API failure case
     result = await getProjectAge("2020-05-20", () => Promise.reject(new Error("API failed")));
-    expected = "Error fetching age data";
+    expected = undefined;
     assertEqual(result, expected, "getProjectAge handles API failure");
 
-    console.log("\ntestGetProjectAge() completed.\n");
+    console.log("\ntestMockGetProjectAge() completed.\n");
 }
 
-async function testGetProgressbar() {
-    console.log("⏱️ Running testGetProgressbar()...\n");
+async function testMockGetProgressbar() {
+    console.log("⏱️ Running testMockGetProgressbar()...\n");
 
     // Test 1: Progress percentage is displayed correctly
     let result = await getProgressbar("2024-01-01", "2024-12-31", mockFetch({ percent: 75 }));
@@ -76,14 +56,14 @@ async function testGetProgressbar() {
 
     // Test 2: API failure handling
     result = await getProgressbar("2024-01-01", "2024-12-31", () => Promise.reject(new Error("API failed")));
-    expected = "Error fetching progress data";
+    expected = undefined;
     assertEqual(result, expected, "getProgressbar handles API failure");
 
-    console.log("\ntestGetProgressbar() completed.\n");
+    console.log("\ntestMockGetProgressbar() completed.\n");
 }
 
-async function testGetCountdown() {
-    console.log("⏱️ Running testGetCountdown()...\n");
+async function testMockGetCountdown() {
+    console.log("⏱️ Running testMockGetCountdown()...\n");
 
     // Test 1: Project days
     let result = await getCountdown("2025-12-31", mockFetch({ daysonly: 2 }));
@@ -92,10 +72,10 @@ async function testGetCountdown() {
 
     // Test 2: API failure
     result = await getCountdown("2025-05-20", () => Promise.reject(new Error("API failed")));
-    expected = "Error fetching countdown data";
+    expected = undefined;
     assertEqual(result, expected, "getCountdown handles API failure");
 
-    console.log("\ntestGetCountdown() completed.\n");
+    console.log("\ntestMockGetCountdown() completed.\n");
 }
 
 
@@ -103,9 +83,9 @@ async function testGetCountdown() {
 async function runTests() {
     console.log("🏃 Running all tests...\n");
 
-    await testGetProjectAge();
-    await testGetProgressbar();
-    await testGetCountdown();
+    await testMockGetProjectAge();
+    await testMockGetProgressbar();
+    await testMockGetCountdown();
 
     console.log("All tests completed.");
 }
