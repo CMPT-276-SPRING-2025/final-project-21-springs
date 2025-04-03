@@ -1,4 +1,13 @@
-const fetch = typeof window !== 'undefined' && window.fetch ? window.fetch : require('node-fetch');
+let fetch;
+
+if (typeof window !== 'undefined' && window.fetch) {
+    fetch = window.fetch;
+} else {
+    // Dynamically import node-fetch when running in Node.js
+    import('node-fetch').then(module => {
+        fetch = module.default;
+    });
+}
 
 //this part of for the age api implementation from digidates
 async function getProjectAge(projectCreationDate, fetchFn = fetch) {
