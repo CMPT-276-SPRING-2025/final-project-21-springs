@@ -1,13 +1,17 @@
 let fetch;
 
 if (typeof window !== 'undefined' && window.fetch) {
+    // Use browser's native fetch
     fetch = window.fetch;
 } else {
-    // Dynamically import node-fetch when running in Node.js
+    // Use a synchronous static import for Node.js
     import('node-fetch').then(module => {
         fetch = module.default;
+    }).catch(err => {
+        console.error("Failed to load node-fetch:", err);
     });
 }
+
 
 //this part of for the age api implementation from digidates
 async function getProjectAge(projectCreationDate, fetchFn = fetch) {
@@ -88,3 +92,4 @@ async function getCountdown(projectEndDate, fetchFn = fetch) {
 
 // Export for testing
 export { getProjectAge, getProgressbar, getCountdown };
+export { fetch };
