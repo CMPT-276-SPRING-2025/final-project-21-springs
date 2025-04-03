@@ -1,10 +1,10 @@
 //this part of for the age api implementation from digidates
-async function getProjectAge(projectCreationDate) {
+async function getProjectAge(projectCreationDate, fetchFn = fetch) {
     const url = `https://digidates.de/api/v1/age/${projectCreationDate}`;
 
     //this part of the code for checking if there is a property under ageextended that is 0, if so it will not be displayed.
     try {
-        const response = await fetch(url);
+        const response = await fetchFn(url);
         const data = await response.json();
         const { ageextended } = data;
 
@@ -23,56 +23,67 @@ async function getProjectAge(projectCreationDate) {
         ageText += " old";
 
         document.getElementById('age').innerText = ageText;
-
+        return ageText;
     } catch (error) {
         console.error("Error fetching age data:", error);
+        return "Error fetching age data";
     }
 }
 
 //this part of for the progress bar api implementation from digidates
-async function getProgressbar(projectCreationDate, projectEndDate){
+async function getProgressbar(projectCreationDate, projectEndDate, fetchFn = fetch){
     const url = `https://digidates.de/api/v1/progress?start=${projectCreationDate}&end=${projectEndDate}`;
 
     try {
-        const response = await fetch(url);
+        const response = await fetchFn(url);
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
         const data = await response.json();
-
-        document.getElementById('progress').innerText = `${data.percent}%`;
+        let progressPercent = `${data.percent}%`;
+        document.getElementById('progress').innerText = progressPercent;
 
         //this part of the code helps the visual green progress bar to be shown on the webpage
         document.getElementById('progress').style.setProperty('--progress-width', data.percent + "%");
+        return progressPercent;
 
     } catch (error) {
         console.error("Error fetching progress data:", error);
+        return "Error fetching progress data";
     }
 }
 
 //this part of for the countdown api implementation from digidates
-async function getCountdown(projectEndDate) {
+async function getCountdown(projectEndDate, fetchFn = fetch) {
     const url = `https://digidates.de/api/v1/countdown/${projectEndDate}`;
 
     try {
-        const response = await fetch(url);
+        const response = await fetchFn(url);
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
         const data = await response.json();
-        // Check the actual response structure for error handling
-        console.log(data); 
-
-        // Corrected property access based on the actual API response
         const { days, daysonly } = data;
 
-        document.getElementById('countdown').innerText = 
-            `${daysonly} days until the due date`;
+        let countdownText = `${daysonly} days until the due date`
+        document.getElementById('countdown').innerText = countdownText;
+        return countdownText;
     } catch (error) {
         console.error("Error fetching countdown data:", error);
+        return "Error fetching countdown data";
     }
+}
+
+// Make function available globally for the browser
+if (typeof window !== "undefined") {
+    window.getProjectAge = getProjectAge;
+}
+
+// Export for testing (only works in a Node.js test environment)
+if (typeof module !== "undefined" && module.exports) {
+    module.exports = { getProjectAge, getProgressbar, getCountdown };
 }
