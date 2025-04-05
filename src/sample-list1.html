@@ -86,10 +86,6 @@
 
             openSubmenu();
 
-            fetchUsers(0, 3).then(users => {
-                displayUsersAsRadioButtons(users);
-            });
-
             getProjectAge(projectCreationDate);
             getProgressbar(projectCreationDate, projectEndDate);
             getCountdown(projectEndDate);

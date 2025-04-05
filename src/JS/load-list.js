@@ -15,7 +15,6 @@ function displayUsers(users, listId) {
     const usersList = users.map(user => `${user.firstName}`).join(', ');
     userArray = users.map(user => `${user.firstName}`);
     document.getElementById(listId).textContent = usersList;
-    console.log("Member list:", userArray);
 }
 
 function fetchThenDisplayBasic(start, end, userIds) {
@@ -110,4 +109,3 @@ async function updateTaskCompletion(taskId, isCompleted) {
 }
 
 document.addEventListener("DOMContentLoaded", loadLeaderboard);
-export { fetchUsers };
