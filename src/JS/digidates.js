@@ -1,5 +1,21 @@
+let fetch;
+
+if (typeof window !== 'undefined' && window.fetch) {
+    // Use browser's native fetch
+    fetch = window.fetch;
+} else {
+    // Use a synchronous static import for Node.js
+    import('node-fetch').then(module => {
+        fetch = module.default;
+    }).catch(err => {
+        console.error("Failed to load node-fetch:", err);
+    });
+}
+
+
 //this part of for the age api implementation from digidates
-async function getProjectAge(projectCreationDate) {
+async function getProjectAge(projectCreationDate, fetchFn = fetch) {
+
     const today = new Date();
     const projectDate = new Date(projectCreationDate);
 
@@ -16,7 +32,7 @@ async function getProjectAge(projectCreationDate) {
     const url = `https://digidates.de/api/v1/age/${projectCreationDate}`;
 
     try {
-        const response = await fetch(url);
+        const response = await fetchFn(url);
         const data = await response.json();
         const { ageextended } = data;
 
@@ -35,7 +51,7 @@ async function getProjectAge(projectCreationDate) {
         ageText += " old";
 
         document.getElementById('age').innerText = ageText;
-
+        return ageText;
     } catch (error) {
         console.error("Error fetching age data:", error);
     }
@@ -43,7 +59,7 @@ async function getProjectAge(projectCreationDate) {
 
 
 //this part of for the progress bar api implementation from digidates
-async function getProgressbar(projectCreationDate, projectEndDate) {
+async function getProgressbar(projectCreationDate, projectEndDate, fetchFn = fetch){
     const today = new Date();
     const projectDate = new Date(projectCreationDate);
 
@@ -61,19 +77,20 @@ async function getProgressbar(projectCreationDate, projectEndDate) {
     const url = `https://digidates.de/api/v1/progress?start=${projectCreationDate}&end=${projectEndDate}`;
 
     try {
-        const response = await fetch(url);
+        const response = await fetchFn(url);
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
         const data = await response.json();
-
-        document.getElementById('progress').innerText = `${data.percent}%`;
+        let progressPercent = `${data.percent}%`;
+        document.getElementById('progress').innerText = progressPercent;
 
         // Update progress bar visual
         document.getElementById('progress').style.setProperty('--progress-width', data.percent + "%");
-
+        
+        return progressPercent;
     } catch (error) {
         console.error("Error fetching progress data:", error);
     }
@@ -81,35 +98,37 @@ async function getProgressbar(projectCreationDate, projectEndDate) {
 
 
 //this part of for the countdown api implementation from digidates
-async function getCountdown(projectEndDate) {
+async function getCountdown(projectEndDate, fetchFn = fetch) {
     const url = `https://digidates.de/api/v1/countdown/${projectEndDate}`;
 
     try {
-        const response = await fetch(url);
+        const response = await fetchFn(url);
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
         const data = await response.json();
-        // Check the actual response structure for error handling
-        console.log(data); 
-
-        // Corrected property access based on the actual API response
         const { days, daysonly } = data;
 
-        document.getElementById('countdown').innerText = 
-            `${daysonly} days until the due date`;
+        let countdownText = `${daysonly} days until the due date`
+        document.getElementById('countdown').innerText = countdownText;
+        return countdownText;
     } catch (error) {
         console.error("Error fetching countdown data:", error);
     }
 }
 
+if (typeof document !== "undefined" && typeof window !== "undefined") {
+    document.addEventListener("DOMContentLoaded", function(){
+        let inputDate = document.getElementById("list-startDate");
+        let deadline = document.getElementById("list-deadline");
+        let today = new Date().toISOString().split("T")[0];
+        inputDate.setAttribute("min", today);
+        deadline.setAttribute("min", today);
+    });
+}
 
-document.addEventListener("DOMContentLoaded", function(){
-    let inputDate = document.getElementById("list-startDate");
-    let deadline = document.getElementById("list-deadline");
-    let today=new Date().toISOString().split("T")[0];
-    inputDate.setAttribute("min", today);
-    deadline.setAttribute("min",today);
-})
+// Export for testing
+export { getProjectAge, getProgressbar, getCountdown };
+export { fetch };

@@ -66,23 +66,26 @@
     </div>
     <script src="JS/load-list.js"></script>
     <script src="JS/sample-list.js"></script>
-    <script src="JS/digidates.js"></script>
-    <script>
-        const projectCreationDate = '2025-01-02'; 
+    <script type="module">
+        import { getProjectAge, getCountdown, getProgressbar } from './JS/digidates.js';
+
+        const projectCreationDate = '2025-01-02';
         const projectEndDate = '2025-06-12';
 
-        displayFixedDate(projectEndDate, "date-id2");
-        fetchThenDisplayBasic(12,15,"users-id2");
-        const userIds = [13, 14, 15];
-        userIds.forEach(userId => {
-            getSingleUsersTodos(userId);
-        });
-      
-        openSubmenu();
+        // Wait for DOM to load
+        document.addEventListener('DOMContentLoaded', () => {
+            getProjectAge(projectCreationDate);
+            getProgressbar(projectCreationDate, projectEndDate);
+            getCountdown(projectEndDate);
 
-        getProjectAge(projectCreationDate);
-        getProgressbar(projectCreationDate, projectEndDate);
-        getCountdown(projectEndDate);   
+            displayFixedDate(projectEndDate, "date-id2");
+            fetchThenDisplayBasic(12, 15, "users-id2");
+            const userIds = [13, 14, 15];
+            userIds.forEach(userId => {
+                getSingleUsersTodos(userId);
+            });
+            openSubmenu();
+        });
     </script>
 </body>
 </html>
