@@ -76,12 +76,34 @@ async function loadLeaderboard() {
 }
 
 async function updateTaskCompletion(taskId, isCompleted) {
+    const taskElement = document.getElementById(`task-${taskId}`);
+    if (!taskElement) {
+        console.error(`Task element with ID task-${taskId} not found`);
+        return;
+    }
+    
+    const checkbox = taskElement.querySelector('input[type="checkbox"]');
+    const completer = window.prompt("User name which completed the task:");
+    
+    if (!completer) {
+        checkbox.checked = false;
+        return;
+    }
+
+    let foundUser = globalUsers.find(user => 
+        user.firstName.toLowerCase() === completer.trim().toLowerCase()
+    );
+
+    if (!foundUser || !userArray.includes(foundUser.firstName)) {
+        console.error("Invalid user or user not in list");
+        checkbox.checked = false;
+        return;
+    }
+
     try {
         const response = await fetch(`https://dummyjson.com/todos/${taskId}`, {
             method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ completed: isCompleted })
         });
         if (!response.ok) {
@@ -91,21 +113,57 @@ async function updateTaskCompletion(taskId, isCompleted) {
         console.warn(`Error updating task ${taskId}:`, error, "Simulating update.");
     }
 
-    const completer = window.prompt("User name which completed the task:");
-    if (completer) {
-        let foundUser = globalUsers.find(user => user.firstName.toLowerCase() === completer.trim().toLowerCase());
-        if (foundUser) {
-            if (userArray.includes(foundUser.firstName)) {
-                extraPoints[foundUser.id] = (extraPoints[foundUser.id] || 0) + 10;
-                console.log(`Task ${taskId} was completed by ${foundUser.firstName}!`);
-                loadLeaderboard();
-            } else {
-                console.error("The entered user is not a member of the list.");
-            }
-        } else {
-            console.error("User not found in the fetched data.");
+    if (isCompleted) {
+        extraPoints[foundUser.id] = (extraPoints[foundUser.id] || 0) + 10;
+        console.log(`Task ${taskId} was completed by ${foundUser.firstName}!`);
+        loadLeaderboard();
+        
+        const taskIndex = todos.findIndex(t => t.id === taskId);
+        if (taskIndex !== -1) {
+            todos[taskIndex].completed = true;
         }
+        
+        taskElement.remove();
     }
 }
 
-document.addEventListener("DOMContentLoaded", loadLeaderboard);
+document.addEventListener("DOMContentLoaded", () => {
+    loadLeaderboard();
+    fetchTodos();
+});
+
+let todos = [];
+
+async function fetchTodos() {
+    try {
+        const response = await fetch("https://dummyjson.com/todos");
+        const data = await response.json();
+        todos = data.todos.filter(todo => !todo.completed);
+        renderTodos();
+    } catch (error) {
+        console.error("Error fetching todos:", error);
+    }
+}
+
+function renderTodos() {
+    const todoListElement = document.getElementById("todo-list");
+    if (!todoListElement) return;
+
+    todos.forEach(todo => {
+        if (!document.getElementById(`task-${todo.id}`)) {
+            const taskElement = document.createElement("div");
+            taskElement.id = `task-${todo.id}`;
+            taskElement.className = "todo task-item";
+            
+            taskElement.innerHTML = `
+                <input type="checkbox">
+                <span>${todo.todo}</span>
+            `;
+            
+            const checkbox = taskElement.querySelector('input[type="checkbox"]');
+            checkbox.addEventListener('change', () => updateTaskCompletion(todo.id, checkbox.checked));
+            
+            todoListElement.appendChild(taskElement);
+        }
+    });
+}
