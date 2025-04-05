@@ -1,0 +1,37 @@
+name: Run digidates Tests
+
+on:
+  push:
+    branches:
+      # Run on push to branches main and test-apis
+      - main
+      - test-apis
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+
+      - name: Install Node.js dependencies
+        working-directory: ./src
+        run: npm install  
+
+      - name: Run unit tests
+        run: |
+          node src/tests/digidates.test.js
+
+      - name: Run integration tests
+        run: |
+          node src/tests/digidates-api.test.js
+
