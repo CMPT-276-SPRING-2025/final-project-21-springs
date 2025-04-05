@@ -119,14 +119,16 @@ async function getCountdown(projectEndDate, fetchFn = fetch) {
     }
 }
 
+if (typeof document !== "undefined" && typeof window !== "undefined") {
+    document.addEventListener("DOMContentLoaded", function(){
+        let inputDate = document.getElementById("list-startDate");
+        let deadline = document.getElementById("list-deadline");
+        let today = new Date().toISOString().split("T")[0];
+        inputDate.setAttribute("min", today);
+        deadline.setAttribute("min", today);
+    });
+}
+
 // Export for testing
 export { getProjectAge, getProgressbar, getCountdown };
 export { fetch };
-
-document.addEventListener("DOMContentLoaded", function(){
-    let inputDate = document.getElementById("list-startDate");
-    let deadline = document.getElementById("list-deadline");
-    let today=new Date().toISOString().split("T")[0];
-    inputDate.setAttribute("min", today);
-    deadline.setAttribute("min",today);
-})
