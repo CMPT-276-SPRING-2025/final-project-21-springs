@@ -8,7 +8,10 @@ Group Members:<br>
 Description:<br>
 This website is intended for classmates and will be a to-do list where you can add friends and compete to see who is the most productive. Completeting tasks on time will earn you points and failing to complete a task by the deadline will result in points being deducted. It is important that users competing against each other are working on the same tasks (for example assignments from the same class).
 
-### **Instructions oh how to ues our website**
+Link to Website: <br>
+https://curious-twilight-704a09.netlify.app/
+
+### **Instructions on how to use our website**
 
 ### **Homepage: Create or Load a List**
 
@@ -79,4 +82,4 @@ If you prefer to **Load a List**, you will be shown three sample lists, each con
 
 - The data for these sample lists is retrieved from the Dummy JSON API
 
-Other than that everything else is same as before
+Other than that, everything else is the same as before.
